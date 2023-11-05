@@ -1,0 +1,28 @@
+<div>
+  <div style="display: flex;align-items: center;justify-content: space-between; margin-bottom: 30px;">
+    <h1 style="margin: 0;">RAISE!</h1>
+
+    <avatar></avatar>
+  </div>
+  <div style="display: flex;justify-content: space-between; gap: 15px;">
+    <div>
+      <mat-card class="inline-calendar-card">
+        <mat-calendar [(selected)]="selected"></mat-calendar>
+      </mat-card>
+    </div>
+    <div>
+      <button mat-flat-button color="primary" style="flex-direction: row-reverse; gap: 1px; border-radius: 15px; height: 45px;">
+        <span style="justify-content: space-between;">Day's session</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <div class="timeline-wrapper"> 
+        <ul class="StepProgress">
+            <li class="StepProgress-item is-done" *ngFor="let step of steps; let isLast = last" [class.is-done]="step.isDone" [class.current]="step.isCurrent">
+              <div>{{step.name}}</div>
+            </li>
+           </ul>
+       </div>
+    </div>
+  </div>
+  
+</div>
