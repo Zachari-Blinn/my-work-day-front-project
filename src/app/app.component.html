@@ -1,8 +1,16 @@
 <div class="page-container">
+  <header-section></header-section>
+  
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    <a mat-tab-link *ngFor="let tabItem of tabs" [active]="isActiveTab(tabItem.route)">
+      {{tabItem.label}}
+    </a>
+  </nav>
+  
   <div class="content-wrap">
-    <router-outlet></router-outlet>
+    <mat-tab-nav-panel #tabPanel>
+      <router-outlet></router-outlet>
+    </mat-tab-nav-panel>
   </div>
-    <footer>
-      <span class="app-version">VER 0.1.0 PREVIEW</span>
-    </footer>
+  <footer-section></footer-section>
 </div>

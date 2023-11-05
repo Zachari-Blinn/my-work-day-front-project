@@ -6,7 +6,6 @@ import { DateAdapter, MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/mate
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatIconModule } from "@angular/material/icon";
 import {MatListModule} from '@angular/material/list';
-import { AvatarComponent } from "../../component/avatar/avatar.component";
 
 export interface TrainingStep {
   name: string;
@@ -26,7 +25,6 @@ export interface TrainingStep {
     MatListModule,
     NgFor,
     DatePipe,
-    AvatarComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
