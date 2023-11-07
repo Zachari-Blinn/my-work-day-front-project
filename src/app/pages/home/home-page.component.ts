@@ -1,4 +1,4 @@
-import { DatePipe, NgFor } from "@angular/common";
+import { DatePipe } from "@angular/common";
 import { Component, Inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -6,12 +6,7 @@ import { DateAdapter, MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/mate
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatIconModule } from "@angular/material/icon";
 import {MatListModule} from '@angular/material/list';
-
-export interface TrainingStep {
-  name: string;
-  isDone: boolean;
-  isCurrent?: boolean;
-}
+import { StepProgressComponent } from "../../component/step-progress/step-progress.component";
 
 @Component({
   standalone: true,
@@ -23,8 +18,8 @@ export interface TrainingStep {
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    NgFor,
     DatePipe,
+    StepProgressComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
@@ -41,27 +36,5 @@ export class HomePageComponent {
   
   public selected: Date | null | undefined;
   
-  public steps: TrainingStep[] = [
-    {
-      name: 'Step 1',
-      isDone: true,
-    },
-    {
-      name: 'Step 2',
-      isDone: true,
-    },
-    {
-      name: 'Step 3',
-      isDone: true,
-    },
-    {
-      name: 'Step 4',
-      isDone: false,
-      isCurrent: true,
-    },
-    {
-      name: 'Step 5',
-      isDone: false,
-    },
-  ];
+
 }
