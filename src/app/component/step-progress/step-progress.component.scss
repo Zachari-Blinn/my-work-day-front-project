@@ -1,4 +1,4 @@
-$step-color: #077187;
+$step-color: black;
 
 .bold {
   font-weight: bold;
@@ -17,11 +17,11 @@ ul {
 }
 
 .is-top-overflowing {
-  --top-mask-size: 48px;
+  --top-mask-size: 40px;
 }
 
 .is-bottom-overflowing {
-  --bottom-mask-size: 48px;
+  --bottom-mask-size: 40px;
 }
 
 .step-progress-content {

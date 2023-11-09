@@ -2,12 +2,12 @@
       
   <div style="display: flex;justify-content: space-between; gap: 10px;">
     <div>
-      <mat-card class="inline-calendar-card" style="box-shadow: none; background-color: #e9cc7d;">
+      <mat-card class="inline-calendar-card" style="box-shadow: none; background-color: #F4F3F1;">
         <mat-calendar [(selected)]="selected"></mat-calendar>
       </mat-card>
     </div>
     <div>
-      <button mat-flat-button color="primary" style="flex-direction: row-reverse; gap: 1px; border-radius: 15px; height: 45px; background-color: #b97777;">
+      <button mat-flat-button color="primary" style="flex-direction: row-reverse; gap: 1px; border-radius: 15px; height: 45px; background-color: black; color: white;">
         <span style="justify-content: space-between;">Day's session</span>
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
@@ -15,4 +15,21 @@
     </div>
   </div>
   
+  <div style="display: block; text-align: center; margin: auto; top: 25px; position: relative;">
+    <div >
+      <button mat-mini-fab style="background-color: white;  height: 48px;
+      width: 48px;" >
+        <mat-icon style="color: black;">add</mat-icon>
+      </button>
+      <button mat-mini-fab style="background-color: black;   height: 48px;
+      width: 48px;">
+        <mat-icon>done</mat-icon>
+      </button>
+      <button mat-fab extended style="background-color: #E3F50F; color: black;">
+        <mat-icon>play_arrow</mat-icon>
+        Commencer la séance
+      </button>
+    </div>
+  </div>
+
 </div>
