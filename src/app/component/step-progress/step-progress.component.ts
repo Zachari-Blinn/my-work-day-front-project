@@ -1,5 +1,5 @@
 import { NgFor } from "@angular/common";
-import { AfterViewInit, Component, ElementRef, HostBinding, HostListener, Renderer2, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, HostListener, Renderer2, ViewChild } from "@angular/core";
 
 export interface TrainingStep {
   name: string;

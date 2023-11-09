@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core"
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
-import KeenSlider, { KeenSliderInstance } from "keen-slider"
+import KeenSlider, { KeenSliderInstance } from "keen-slider";
 
 @Component({
   standalone: true,
