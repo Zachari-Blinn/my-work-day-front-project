@@ -15,21 +15,26 @@
     </div>
   </div>
   
-  <div style="display: block; text-align: center; margin: auto; top: 25px; position: relative;">
-    <div >
+  <div style="display: flex; text-align: center; margin: 25px 0;   justify-content: center;">
+    <div style="background-color:#E4E4E4;border-radius: 25px;padding: 2px;">
       <button mat-mini-fab style="background-color: white;  height: 48px;
-      width: 48px;" >
+      width: 48px;box-shadow: none;" >
         <mat-icon style="color: black;">add</mat-icon>
       </button>
       <button mat-mini-fab style="background-color: black;   height: 48px;
-      width: 48px;">
+      width: 48px; box-shadow: none;">
         <mat-icon>done</mat-icon>
       </button>
-      <button mat-fab extended style="background-color: #E3F50F; color: black;">
+      <button mat-fab extended style="background-color: #E3F50F; color: black; box-shadow: none;">
         <mat-icon>play_arrow</mat-icon>
         Commencer la séance
       </button>
     </div>
+  </div>
+  
+  <div>
+    <training-model-slider></training-model-slider>
+
   </div>
 
 </div>

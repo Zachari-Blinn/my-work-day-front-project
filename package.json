@@ -26,6 +26,7 @@
     "@capacitor/core": "^5.5.1",
     "@capacitor/ios": "^5.5.1",
     "cal-heatmap": "^4.2.3",
+    "keen-slider": "^6.8.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

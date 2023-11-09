@@ -7,6 +7,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatIconModule } from "@angular/material/icon";
 import {MatListModule} from '@angular/material/list';
 import { StepProgressComponent } from "../../component/step-progress/step-progress.component";
+import { TrainingModelSliderComponent } from "../../component/training-model-slider/training-model-slider.component";
 
 @Component({
   standalone: true,
@@ -20,6 +21,7 @@ import { StepProgressComponent } from "../../component/step-progress/step-progre
     MatListModule,
     DatePipe,
     StepProgressComponent,
+    TrainingModelSliderComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
