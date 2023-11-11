@@ -1,0 +1,83 @@
+<div>
+  <form [formGroup]="trainingFormGeneralInfo" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width" style="width: 100%">
+      <mat-label>Nom de la séance</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Haut du corps"
+        formControlName="trainingName"
+      />
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Préréglage entrainement</mat-label>
+      <mat-select formControlName="sportsControl">
+        <mat-option></mat-option>
+        @for (group of sportsGroups; track group) {
+        <mat-optgroup [label]="group.type" [disabled]="group.disabled">
+          @for (sport of group.sports; track sport) {
+          <mat-option [value]="sport.value">{{ sport.viewValue }}</mat-option>
+          }
+        </mat-optgroup>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <div style="width: 100%; display: flex; justify-content: space-around">
+      <mat-chip-listbox
+        aria-label="Jours d'entrainement"
+        multiple
+        formControlName="trainingDays"
+      >
+        <mat-chip-option>Lun</mat-chip-option>
+        <mat-chip-option>Mar</mat-chip-option>
+        <mat-chip-option>Mer</mat-chip-option>
+        <mat-chip-option>Jeu</mat-chip-option>
+        <mat-chip-option>Ven</mat-chip-option>
+        <mat-chip-option>Sam</mat-chip-option>
+        <mat-chip-option>Dim</mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+
+    <mat-form-field
+      class="example-full-width"
+      style="width: 100%; margin-top: 20px"
+    >
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        placeholder="Ex. entraînement centré sur le haut du corps"
+        formControlName="description"
+        style="height: 100px"
+      ></textarea>
+    </mat-form-field>
+
+    <section>
+      <p>Rappel pendant l'entrainement</p>
+      <div>
+        <mat-slide-toggle formControlName="warmUp" style="margin: 10px 0px"
+          ><span style="padding-left: 15px"
+            >Échauffement</span
+          ></mat-slide-toggle
+        >
+      </div>
+      <div>
+        <mat-slide-toggle formControlName="stretching" style="margin: 10px 0px">
+          <span style="padding-left: 15px">Étirements</span>
+        </mat-slide-toggle>
+      </div>
+    </section>
+
+    <div style="width: 100%; text-align: center; margin-top: 20px">
+      <button
+        mat-fab
+        extended
+        type="submit"
+        style="background-color: #e3f50f; color: black; box-shadow: none"
+      >
+        <mat-icon>play_arrow</mat-icon>
+        Commencer la création
+      </button>
+    </div>
+  </form>
+</div>
