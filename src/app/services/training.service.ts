@@ -19,4 +19,8 @@ export class TrainingService {
   public create(data: Training): Observable<any> {
     return this.http.post(BASE_URL, data, httpOptions);
   }
+  
+  public getCurrentUserTrainings(): Observable<any> {
+    return this.http.get(BASE_URL + '/current-user', httpOptions);
+  }
 }

@@ -2,6 +2,12 @@
 
 @include mat.core();
 
+$primary-color: #bb1d38;
+$primary-color-text: white;
+$background-color: #f6f6f6;
+$secondary-color: black;
+$secondary-color-text: white;
+
 html,
 body {
   height: 100%;
@@ -10,5 +16,15 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #FFFFFF;
+  background-color: var($background-color);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.button-primary {
+  background-color: var($primary-color);
+  color: var($primary-color-text);
 }
