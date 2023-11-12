@@ -11,6 +11,7 @@ import {
 import {MatChipsModule} from '@angular/material/chips';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { TrainingService } from "../../../services/training.service";
 
 interface Sport {
   value: string;
@@ -38,7 +39,7 @@ interface SportsGroup {
     _MatSlideToggleRequiredValidatorModule,
     MatChipsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './create-training-form-general-info.component.html',
   styleUrls: ['./create-training-form-general-info.component.scss'],
@@ -48,30 +49,41 @@ export class CreateTrainingFormGeneralInfo implements OnInit {
 
   public trainingFormGeneralInfo!: FormGroup;
 
-  public constructor(private _formBuilder: FormBuilder) { }
+  public constructor(private _formBuilder: FormBuilder, private trainingService: TrainingService) { }
 
   public submitted: boolean = false;
 
   ngOnInit(): void {
     this.trainingFormGeneralInfo = this._formBuilder.group({
-      trainingName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       sportsControl: null,
       description: null,
-      warmUp: [true],
-      stretching: [false],
+      hasWarpUp: [true],
+      hasStretching: [false],
       trainingDays: [null]
     });
   }
 
   public onSubmit(): void {
     console.log('onSubmit');
-    this.submitted = true;
 
     if (this.trainingFormGeneralInfo.invalid) {
       return;
     }
 
     console.log(JSON.stringify(this.trainingFormGeneralInfo.value, null, 2));
+    this.trainingService.create(this.trainingFormGeneralInfo.value).subscribe({
+      next: (data) => {
+        console.log('data', data);
+        this.submitted = true;
+      },
+      error: (error) => {
+        console.log('error', error);
+      },
+      complete: () => {
+        console.log('complete');
+      }
+    });
   }
 
   public sportsGroups: SportsGroup[] = [

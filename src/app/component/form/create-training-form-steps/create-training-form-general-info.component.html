@@ -5,7 +5,7 @@
       <input
         matInput
         placeholder="Ex. Haut du corps"
-        formControlName="trainingName"
+        formControlName="name"
       />
     </mat-form-field>
 
@@ -29,13 +29,13 @@
         multiple
         formControlName="trainingDays"
       >
-        <mat-chip-option>Lun</mat-chip-option>
-        <mat-chip-option>Mar</mat-chip-option>
-        <mat-chip-option>Mer</mat-chip-option>
-        <mat-chip-option>Jeu</mat-chip-option>
-        <mat-chip-option>Ven</mat-chip-option>
-        <mat-chip-option>Sam</mat-chip-option>
-        <mat-chip-option>Dim</mat-chip-option>
+        <mat-chip-option value="MONDAY">Lun</mat-chip-option>
+        <mat-chip-option value="TUESDAY">Mar</mat-chip-option>
+        <mat-chip-option value="WEDNESDAY">Mer</mat-chip-option>
+        <mat-chip-option value="THURSDAY">Jeu</mat-chip-option>
+        <mat-chip-option value="FRIDAY">Ven</mat-chip-option>
+        <mat-chip-option value="SATURDAY">Sam</mat-chip-option>
+        <mat-chip-option value="SUNDAY">Dim</mat-chip-option>
       </mat-chip-listbox>
     </div>
 
@@ -55,14 +55,14 @@
     <section>
       <p>Rappel pendant l'entrainement</p>
       <div>
-        <mat-slide-toggle formControlName="warmUp" style="margin: 10px 0px"
+        <mat-slide-toggle formControlName="hasWarpUp" style="margin: 10px 0px"
           ><span style="padding-left: 15px"
             >Échauffement</span
           ></mat-slide-toggle
         >
       </div>
       <div>
-        <mat-slide-toggle formControlName="stretching" style="margin: 10px 0px">
+        <mat-slide-toggle formControlName="hasStretching" style="margin: 10px 0px">
           <span style="padding-left: 15px">Étirements</span>
         </mat-slide-toggle>
       </div>

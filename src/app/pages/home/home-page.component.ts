@@ -8,6 +8,7 @@ import { MatIconModule } from "@angular/material/icon";
 import {MatListModule} from '@angular/material/list';
 import { StepProgressComponent } from "../../component/step-progress/step-progress.component";
 import { TrainingModelSliderComponent } from "../../component/training-model-slider/training-model-slider.component";
+import { Router } from "@angular/router";
 
 @Component({
   standalone: true,
@@ -31,6 +32,7 @@ export class HomePageComponent {
   constructor(
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
+    private router: Router
   ) {
     this._locale = 'fr';
     this._adapter.setLocale(this._locale);
@@ -38,5 +40,7 @@ export class HomePageComponent {
   
   public selected: Date | null | undefined;
   
-
+  public goToCreateTrainingPage(): void {
+    this.router.navigate(['/create-training']);
+  }
 }

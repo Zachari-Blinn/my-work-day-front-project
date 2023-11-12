@@ -1,40 +1,77 @@
 <div>
-      
-  <div style="display: flex;justify-content: space-between; gap: 10px;">
+  <div style="display: flex; justify-content: space-between; gap: 10px">
     <div>
-      <mat-card class="inline-calendar-card" style="box-shadow: none; background-color: #F4F3F1;">
+      <mat-card
+        class="inline-calendar-card"
+        style="box-shadow: none; background-color: #f4f3f1"
+      >
         <mat-calendar [(selected)]="selected"></mat-calendar>
       </mat-card>
     </div>
     <div>
-      <button mat-flat-button color="primary" style="flex-direction: row-reverse; gap: 1px; border-radius: 15px; height: 45px; background-color: black; color: white;">
-        <span style="justify-content: space-between;">Day's session</span>
+      <button
+        mat-flat-button
+        color="primary"
+        style="
+          flex-direction: row-reverse;
+          gap: 1px;
+          border-radius: 15px;
+          height: 45px;
+          background-color: black;
+          color: white;
+        "
+      >
+        <span style="justify-content: space-between">Day's session</span>
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
-       <step-progress></step-progress>
+      <step-progress></step-progress>
     </div>
   </div>
-  
-  <div style="display: flex; text-align: center; margin: 25px 0;   justify-content: center;">
-    <div style="background-color:#E4E4E4;border-radius: 25px;padding: 2px;">
-      <button mat-mini-fab style="background-color: white;  height: 48px;
-      width: 48px;box-shadow: none;" >
-        <mat-icon style="color: black;">add</mat-icon>
+
+  <div style="margin-top: 35px">
+    <training-model-slider></training-model-slider>
+  </div>
+
+  <div
+    style="
+      display: flex;
+      text-align: center;
+      margin: 35px 0;
+      justify-content: center;
+    "
+  >
+    <div style="background-color: #e4e4e4; border-radius: 25px; padding: 2px">
+      <button
+        mat-mini-fab
+        style="
+          background-color: white;
+          height: 48px;
+          width: 48px;
+          box-shadow: none;
+        "
+        (click)="goToCreateTrainingPage()"
+      >
+        <mat-icon style="color: black">add</mat-icon>
       </button>
-      <button mat-mini-fab style="background-color: black;   height: 48px;
-      width: 48px; box-shadow: none;">
+      <button
+        mat-mini-fab
+        style="
+          background-color: black;
+          height: 48px;
+          width: 48px;
+          box-shadow: none;
+        "
+      >
         <mat-icon>done</mat-icon>
       </button>
-      <button mat-fab extended style="background-color: #E3F50F; color: black; box-shadow: none;">
+      <button
+        mat-fab
+        extended
+        style="background-color: #e3f50f; color: black; box-shadow: none"
+      >
         <mat-icon>play_arrow</mat-icon>
         Commencer la séance
       </button>
     </div>
   </div>
-  
-  <div>
-    <training-model-slider></training-model-slider>
-
-  </div>
-
 </div>

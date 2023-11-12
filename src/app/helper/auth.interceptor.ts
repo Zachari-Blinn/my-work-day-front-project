@@ -21,7 +21,15 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     req = req.clone({
       withCredentials: true,
     });
-
+    
+    if(this.storageService.isLoggedIn()) {
+      const token = this.storageService.getUser().accessToken;
+      if (token) {
+        req = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token) });
+      }
+    }
+    
+    console.log('Sending request with new header now ...', req);
     return next.handle(req).pipe(
       catchError((error) => {
         if (
