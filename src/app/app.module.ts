@@ -10,6 +10,7 @@ import { HeaderSectionComponent } from './component/header-section/header-sectio
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { httpInterceptorProviders } from './helper/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatTabsModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

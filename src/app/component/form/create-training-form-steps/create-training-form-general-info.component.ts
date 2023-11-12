@@ -42,12 +42,6 @@ interface SportsGroup {
   ],
   templateUrl: './create-training-form-general-info.component.html',
   styleUrls: ['./create-training-form-general-info.component.scss'],
-  providers: [
-    { 
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, 
-      useValue: { appearance: 'outline' } 
-    },
-  ],
   exportAs: 'create-training-form-general-info'
 })
 export class CreateTrainingFormGeneralInfo implements OnInit {
