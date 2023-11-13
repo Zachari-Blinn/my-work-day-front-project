@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { CreateTrainingFormGeneralInfo } from "../../../component/form/create-training-form-steps/create-training-form-general-info.component";
+import { CreateTrainingFormGeneralInfo } from "../../../component/form/create-training-form-steps/create-training-form-general-info/create-training-form-general-info.component";
 
 @Component({
   standalone: true,

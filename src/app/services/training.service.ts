@@ -23,4 +23,8 @@ export class TrainingService {
   public getCurrentUserTrainings(): Observable<any> {
     return this.http.get(BASE_URL + '/current-user', httpOptions);
   }
+  
+  public getTraining(trainingId: Training['id']): Observable<any> {
+    return this.http.get(BASE_URL + '/' + trainingId, httpOptions);
+  }
 }

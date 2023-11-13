@@ -11,7 +11,7 @@ import {
 import {MatChipsModule} from '@angular/material/chips';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-import { TrainingService } from "../../../services/training.service";
+import { TrainingService } from "../../../../services/training.service";
 
 interface Sport {
   value: string;
