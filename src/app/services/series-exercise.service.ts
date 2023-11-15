@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, retry, throwError } from "rxjs";
 
-const baseUrl = 'http://localhost:8090/api/v1/series-exercises';
+const baseUrl = 'http://192.168.0.15:8090/api/v1/series-exercises';
 
 @Injectable({
   providedIn: 'root'

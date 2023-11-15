@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Training } from '../models/training.model';
 
-const BASE_URL = 'http://localhost:8081/api/training';
+const BASE_URL = 'http://192.168.0.15:8081/api/training';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
