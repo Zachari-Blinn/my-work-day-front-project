@@ -1,3 +1,27 @@
 <div>
-  ici {{trainingId}}
+  <div>
+    training name: {{training?.name}}
+  </div>
+  <div>
+    training id: {{trainingId}}
+  </div>
+  
+  <form>
+    <mat-form-field class="example-full-width">
+      <mat-label>Exercise</mat-label>
+      <input #input
+             type="text"
+             placeholder="Pick one"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto"
+             (input)="filter()"
+             (focus)="filter()">
+      <mat-autocomplete requireSelection #auto="matAutocomplete">
+        @for (option of filteredOptions; track option) {
+          <mat-option [value]="option.name">{{option.name}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
 </div>
