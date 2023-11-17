@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {
+  MatSlideToggleModule,
   _MatSlideToggleRequiredValidatorModule,
 } from '@angular/material/slide-toggle';
 import { Training } from "../../../../models/training.model";
@@ -33,7 +34,10 @@ interface TempoList {
     MatDividerModule,
     MatSelectModule,
     MatButtonModule,
-    MatIconModule,CdkDropList, CdkDrag
+    MatIconModule,
+    CdkDropList,
+    CdkDrag,
+    MatSlideToggleModule
   ],
   templateUrl: './add-exercise-form.component.html',
   styleUrls: ['./add-exercise-form.component.scss'],
@@ -63,7 +67,8 @@ export class AddExerciseForm implements OnInit {
       series: this._formBuilder.array([
         this.newSeries()
       ]),
-      notes: ['']
+      notes: [''],
+      numberOfWarmUpSeries: [null]
     });
   }
 
@@ -109,7 +114,7 @@ export class AddExerciseForm implements OnInit {
       weight: new FormControl(null),
       restTime: new FormControl('02:00'),
       tempo: new FormControl<TempoList | null>(null),
-      positionIndex: new FormControl(null)
+      positionIndex: new FormControl(0)
     })
   }
   
@@ -148,7 +153,7 @@ export class AddExerciseForm implements OnInit {
   ];
   
   // drag and drop
-  public currentPositionIndex: number = 0;
+  public currentPositionIndex: number = 1;
 
   public drop(event: CdkDragDrop<string[]>) {
     console.log(event);

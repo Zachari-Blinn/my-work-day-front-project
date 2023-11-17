@@ -70,9 +70,9 @@
     <mat-divider style="margin: 20px 0;"></mat-divider>
     
     <mat-form-field
-    class="example-full-width"
-    style="width: 100%; margin-top: 20px"
-  >
+      class="example-full-width"
+      style="width: 100%; margin-top: 20px"
+    >
     <mat-label>Notes</mat-label>
     <textarea
       matInput
@@ -81,6 +81,23 @@
       style="height: 100px"
     ></textarea>
   </mat-form-field>
+  
+  <div>
+    <mat-slide-toggle>Série de chauffe</mat-slide-toggle>
+  </div>
+  
+  <div style="width: 100%; text-align: center; margin-top: 20px">
+    <button
+      mat-fab
+      extended
+      type="submit"
+      style="background-color: #e3f50f; color: black; box-shadow: none"
+      (click)="onSubmit()"
+    >
+      <mat-icon>play_arrow</mat-icon>
+      Valider la séance
+    </button>
+  </div>
     
   </form>
 </div>
