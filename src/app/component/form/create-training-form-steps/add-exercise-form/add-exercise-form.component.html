@@ -1,27 +1,86 @@
 <div>
-  <div>
-    training name: {{training?.name}}
-  </div>
-  <div>
-    training id: {{trainingId}}
+  <div style="margin: 10px 0;">
+    training name: {{training?.name}} / training id: {{trainingId}}
   </div>
   
-  <form>
+  <form [formGroup]="addTrainingExerciseAndSeriesForm">
+    
     <mat-form-field class="example-full-width">
       <mat-label>Exercise</mat-label>
       <input #input
              type="text"
-             placeholder="Pick one"
+             placeholder="Sélectionnez un exercice"
              matInput
-             [formControl]="myControl"
+             formControlName="exercise"
              [matAutocomplete]="auto"
              (input)="filter()"
-             (focus)="filter()">
+             (focus)="filter()" required>
       <mat-autocomplete requireSelection #auto="matAutocomplete">
-        @for (option of filteredOptions; track option) {
+        @for (option of filteredOptions; track option.id) {
           <mat-option [value]="option.name">{{option.name}}</mat-option>
         }
       </mat-autocomplete>
     </mat-form-field>
+    
+    <mat-divider style="margin: 20px 0;"></mat-divider>
+    
+    <ng-container formArrayName="series">
+      <div cdkDropList class="series-list" (cdkDropListDropped)="drop($event)">
+
+      @for (aTrainingSeries of series.controls; track aTrainingSeries;) {
+        <div [formGroupName]="$index" style="display: flex; gap: 6px;" class="series-box" cdkDrag>
+          
+          <mat-form-field floatLabel="always">
+            <mat-label>Réps</mat-label>
+            <input type="number" matInput formControlName="repsCount" placeholder="12">
+          </mat-form-field>
+          
+          <mat-form-field floatLabel="always">
+            <mat-label>Tempo</mat-label>
+            <mat-select formControlName="tempo">
+              <mat-option></mat-option>
+              @for (tempo of tempoList; track tempo.id) {
+                <mat-option [value]="tempo">
+                  {{tempo.label}}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-form-field floatLabel="always">
+            <mat-label>Repos</mat-label>
+            <input type="time" matInput formControlName="restTime">
+          </mat-form-field>
+          
+          <mat-form-field floatLabel="always">
+            <mat-label>Charge</mat-label>
+            <input type="number" matInput formControlName="weight" placeholder="12">
+          </mat-form-field>
+          
+          <div class="series-custom-placeholder" *cdkDragPlaceholder></div>
+        </div>
+      }
+      </div>
+    </ng-container>
+    
+    <div align="right">
+      <button  (click)="addSeries()" mat-button color="primary">Ajouter une série</button>
+    </div>
+
+    <mat-divider style="margin: 20px 0;"></mat-divider>
+    
+    <mat-form-field
+    class="example-full-width"
+    style="width: 100%; margin-top: 20px"
+  >
+    <mat-label>Notes</mat-label>
+    <textarea
+      matInput
+      placeholder="Ex. entraînement centré sur le haut du corps"
+      formControlName="notes"
+      style="height: 100px"
+    ></textarea>
+  </mat-form-field>
+    
   </form>
 </div>
