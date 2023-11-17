@@ -11,13 +11,13 @@
              type="text"
              placeholder="Sélectionnez un exercice"
              matInput
-             formControlName="exercise"
+             [formControl]="exerciseControl"
              [matAutocomplete]="auto"
              (input)="filter()"
              (focus)="filter()" required>
-      <mat-autocomplete requireSelection #auto="matAutocomplete">
-        @for (option of filteredOptions; track option.id) {
-          <mat-option [value]="option.name">{{option.name}}</mat-option>
+      <mat-autocomplete requireSelection #auto="matAutocomplete" [displayWith]="displayFn">
+        @for (option of filteredOptions; track option) {
+          <mat-option [value]="option" [id]="option.id">{{option.name}}</mat-option>
         }
       </mat-autocomplete>
     </mat-form-field>

@@ -4,7 +4,8 @@ export class Series {
   public restTime?: string;
   public notes?: string;
   public repsCount?: number;
-  
+  public tempo?: string;
+  public positionIndex?: number;
   public difficulty?: Difficulty;
 }
 

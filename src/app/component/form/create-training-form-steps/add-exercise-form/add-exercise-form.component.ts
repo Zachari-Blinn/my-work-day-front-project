@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
+import { TrainingExercise } from '../../../../models/training-exercise.model';
 
 interface TempoList {
   id: number;
@@ -52,10 +53,13 @@ export class AddExerciseForm implements OnInit {
   public exercises: Exercise[] = [];
   public filteredOptions: Exercise[] = [];
 
+  // todo voir la doc angular pour simplifier le code
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
   public options!: Exercise[];
   
   public addTrainingExerciseAndSeriesForm: FormGroup = new FormGroup({});
+  
+  public exerciseControl = new FormControl(null, [Validators.required]);
 
   constructor(private _formBuilder: FormBuilder, private trainingService: TrainingService, private exerciseService: ExerciseService) { }
 
@@ -63,12 +67,12 @@ export class AddExerciseForm implements OnInit {
     this.retrieveTraining(this.trainingId);
     this.retrieveExercises();
     this.addTrainingExerciseAndSeriesForm = this._formBuilder.group({
-      exercise: [null, [Validators.required]],
       series: this._formBuilder.array([
         this.newSeries()
       ]),
       notes: [''],
-      numberOfWarmUpSeries: [null]
+      numberOfWarmUpSeries: [null],
+      exerciseId: null
     });
   }
 
@@ -99,13 +103,17 @@ export class AddExerciseForm implements OnInit {
 
   public filter(): void {
     const filterValue = this.input.nativeElement.value.toLowerCase();
-    this.filteredOptions = this.exercises.filter(option => option?.name?.toLowerCase().includes(filterValue));
+    this.filteredOptions = this.exercises.filter(option => option.name?.toLowerCase().includes(filterValue));
   }
   
   // Series
   
   public get series(): FormArray {
     return this.addTrainingExerciseAndSeriesForm.get('series') as FormArray;
+  }
+  
+  public get exercise(): FormControl {
+    return this.exerciseControl as FormControl;
   }
   
   public newSeries(): FormGroup {
@@ -136,7 +144,13 @@ export class AddExerciseForm implements OnInit {
   // end series
   
   public onSubmit(): void {
-    console.warn(this.addTrainingExerciseAndSeriesForm.value);
+    this.addTrainingExerciseAndSeriesForm.value.exerciseId = this.exercise.value.id;
+    
+    if (this.addTrainingExerciseAndSeriesForm.invalid) {
+      return;
+    }
+
+    this.addExercise(this.addTrainingExerciseAndSeriesForm.value);
   }
   
   // tempo
@@ -165,8 +179,23 @@ export class AddExerciseForm implements OnInit {
     });
     
     // show data of series
-    console.log(this.series.controls.forEach((control, index) => {
-      console.log(control.value);
-    }));
+    // console.log(this.series.controls.forEach((control, index) => {
+    //   console.log(control.value);
+    // }));
+  }
+  
+  public displayFn(exercise: Exercise): string {
+    return exercise && exercise.name ? exercise.name : '';
+  }
+  
+  private addExercise(data: TrainingExercise): void {
+    this.trainingService.addExercise(this.trainingId, data).subscribe({
+      next: (result) => {
+        console.info(result);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 }
