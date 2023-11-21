@@ -9,6 +9,8 @@ import {MatListModule} from '@angular/material/list';
 import { StepProgressComponent } from "../../component/step-progress/step-progress.component";
 import { TrainingModelSliderComponent } from "../../component/training-model-slider/training-model-slider.component";
 import { Router } from "@angular/router";
+import { DaySessionSelectButtonComponent } from "src/app/component/day-session-select-button/day-session-select-button.component";
+import { SessionStepComponent } from "src/app/component/session-step/session-step.component";
 
 @Component({
   standalone: true,
@@ -22,7 +24,9 @@ import { Router } from "@angular/router";
     MatListModule,
     DatePipe,
     StepProgressComponent,
-    TrainingModelSliderComponent
+    TrainingModelSliderComponent,
+    DaySessionSelectButtonComponent,
+    SessionStepComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']

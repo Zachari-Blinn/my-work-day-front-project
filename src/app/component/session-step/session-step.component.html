@@ -1,0 +1,10 @@
+<mat-stepper [linear]="false" orientation="vertical" #stepper>
+  <ng-template matStepperIcon="edit" let-index="index">
+    <span style="text-align: center;">{{index + 1}}</span>
+      
+  </ng-template>
+  @for (item of stepperContent; track $index) {
+    <mat-step [completed]="item.isDone" [label]="item.name" state="number">
+    </mat-step>
+  }
+</mat-stepper>

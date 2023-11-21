@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../../../services/auth.service";
 import { StorageService } from "../../../services/storage.service";
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
@@ -21,6 +21,15 @@ import { Router } from "@angular/router";
   ],
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        hideRequiredMarker: true,
+        appearance: 'outline'
+      }
+    }
+  ],
   exportAs: 'login-form'
 })
 export class LoginFormComponent implements OnInit {

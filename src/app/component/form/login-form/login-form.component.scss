@@ -1,3 +1,67 @@
+// Variables
+$primary-color: #FF1D1D;
+
+// Container styles
+.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.sub-title {
+  font-size: 14px;
+  font-weight: lighter;
+  margin-bottom: 47px;
+
+}
+
 mat-form-field {
   width: 100%;
+}
+
+mat-label {
+  color: $primary-color;
+}
+
+.forgot-password {
+  text-align: right;
+  font-size: 12px;
+  font-weight: lighter;
+  margin-bottom: 31px;
+}
+
+.login-button {
+  background-color: $primary-color;
+  color: white;
+  box-shadow: none;
+  border-radius: 15px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.create-account-full-text {
+  text-align: center;
+
+}
+.create-account {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: underline;
+  color: black;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
 }
