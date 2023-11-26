@@ -1,44 +1,26 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
-import KeenSlider, { KeenSliderInstance } from "keen-slider";
 import { TrainingService } from "../../services/training.service";
 import { Training } from "../../models/training.model";
+import { NgxFlickingModule } from "@egjs/ngx-flicking";
+import { RouterModule } from "@angular/router";
 
 @Component({
   standalone: true,
   selector: "training-model-slider",
   templateUrl: "./training-model-slider.component.html",
-  styleUrls: [
-    "../../../../node_modules/keen-slider/keen-slider.min.css",
-    "./training-model-slider.component.scss",
-  ],
+  styleUrl: "./training-model-slider.component.scss",
   imports: [
-    MatIconModule
+    MatIconModule,
+    NgxFlickingModule,
+    RouterModule
   ],
   exportAs: "training-model-slider",
 })
-export class TrainingModelSliderComponent implements AfterViewInit, OnDestroy, OnInit {
-  @ViewChild("sliderRef")
-  public sliderRef!: ElementRef<HTMLElement>
-
-  public slider: KeenSliderInstance | undefined;
-  
+export class TrainingModelSliderComponent implements OnInit { 
   public trainings?: Training[];
   
   constructor(private trainingService: TrainingService) { }
-
-  ngAfterViewInit() {
-    this.slider = new KeenSlider(this.sliderRef.nativeElement, {
-      slides: {
-        perView: 3,
-        spacing: 15,
-      },
-    })
-  }
-
-  ngOnDestroy() {
-    if (this.slider) this.slider.destroy()
-  }
 
   ngOnInit(): void {
     this.retrieveUserTrainings();
@@ -52,7 +34,7 @@ export class TrainingModelSliderComponent implements AfterViewInit, OnDestroy, O
 
       },
       error: (error) => {
-        console.log(error);
+        console.error(error);
       }
     })
   }

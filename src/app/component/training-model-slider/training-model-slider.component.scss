@@ -1,13 +1,10 @@
-.keen-slider__slide {
+.flicking-panel {
   background: #E0D6D1;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 50px;
-  color: #020202;
-  
-  height: 65px;
-  width: 60px;
+  margin-right: 5px;
+  height: 58px;
+  width: 105px;
+  max-width: 105px;
   border-radius: 15px;
   
   img {
@@ -16,21 +13,20 @@
   }
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+  padding-left: 12px;
   span {
     font-size: 14px;
     font-weight: 300;
   }
-  
-  &.end {
+  &:last-child {
     background: none;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    border: 2px dashed #b8b8b8;
+    outline: 2px dashed #b8b8b8;
+    outline-offset: -2px;
     background-color: #F4F3F1;
     mat-icon {
       color: #b8b8b8;
     }
+  
   }
 }

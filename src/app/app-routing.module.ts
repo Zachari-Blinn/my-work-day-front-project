@@ -7,7 +7,7 @@ import { AccessGuard } from './guards/access.guard';
 import { AddExerciseFormPageComponent } from './pages/form/add-exercise-form-page/add-exercise-form-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
   { path: 'create-training', component: CreateTrainingFormPageComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
   { path: 'login', component: LoginPageComponent, data: { requiresLogin: false } },

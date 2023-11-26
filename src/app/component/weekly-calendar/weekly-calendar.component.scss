@@ -1,0 +1,75 @@
+// calendar
+
+.weekly-calendar {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  .monthYear {
+    text-align: center;
+    font-weight: 600;
+    width: 150px;
+  }
+  .header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .day {
+    text-align: center;
+    padding: 5px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 500;
+  }
+  .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  .date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+    border-radius: 15px;
+  }
+  .date:hover,
+  .date.active {
+    background: #FF3434;
+  }
+  .date.inactive {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  .date.inactive:hover {
+    color: #fff;
+  }
+  .currentDate {
+    border: 1px solid #FF3434;
+  }

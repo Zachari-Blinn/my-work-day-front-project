@@ -24,24 +24,24 @@ export class StepProgressComponent implements AfterViewInit {
   
   public steps: TrainingStep[] = [
     {
-      name: 'Step 1',
+      name: 'Développé couché',
       isDone: true,
     },
     {
-      name: 'Step 2',
+      name: 'Développé militaire',
       isDone: true,
     },
     {
-      name: 'Step 3',
+      name: 'Elevation latérale',
       isDone: true,
     },
     {
-      name: 'Step 4',
+      name: 'Curl biceps',
       isDone: false,
       isCurrent: true,
     },
     {
-      name: 'Step 5',
+      name: 'Gainage',
       isDone: false,
     },
     {

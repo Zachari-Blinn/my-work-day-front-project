@@ -1,12 +1,8 @@
-@use '@angular/material' as mat;
+@import './custom-theme.scss';
 
-@include mat.core();
-
-$primary-color: #bb1d38;
+$primary-color: #ff4081;
 $primary-color-text: white;
 $background-color: #f6f6f6;
-$secondary-color: black;
-$secondary-color-text: white;
 
 html,
 body {
@@ -27,4 +23,9 @@ body {
 .button-primary {
   background-color: var($primary-color);
   color: var($primary-color-text);
+}
+
+fieldset {
+  border: none;
+  background: none;
 }

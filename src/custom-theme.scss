@@ -1,0 +1,69 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$primary-palette: (
+  50: #ffebee,
+  100: #ffccd3,
+  200: #f5989a,
+  300: #ed6e73,
+  400: #f94a4f,
+  500: #ff3434,
+  600: #f02833,
+  700: #de1b2d,
+  800: #d10e26,
+  900: #c30018,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+$secondary-palette: (
+  50: #f5f5f5,
+  100: #e9e9e9,
+  200: #d9d9d9,
+  300: #c4c4c4,
+  400: #9d9d9d,
+  500: #7b7b7b,
+  600: #555555,
+  700: #434343,
+  800: #262626,
+  900: #000000,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: white,
+  )
+);
+
+$red-october-primary: mat.define-palette($primary-palette, 700, 300, 900);
+$red-october-accent: mat.define-palette($secondary-palette, 300, 100, 500);
+$red-october-theme: mat.define-light-theme((
+  color: (
+    primary: $red-october-primary,
+    accent: $red-october-accent,
+  )
+));
+@include mat.all-component-themes($red-october-theme);
