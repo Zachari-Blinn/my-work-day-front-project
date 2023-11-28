@@ -1,12 +1,14 @@
 <div class="weekly-calendar">
   <div class="header">
-    <button (click)="previousWeek()">
-      <mat-icon>chevron_left</mat-icon>
-    </button>
     <div class="monthYear">{{ currentMonth }} {{ currentDate.format('YYYY') }}</div>
-    <button (click)="nextWeek()">
-      <mat-icon>chevron_right</mat-icon>
-    </button>
+    <div style="display: flex; gap: 10px;">
+      <button (click)="previousWeek()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button (click)="nextWeek()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
   </div>
   <div class="days">
     @for (day of weekDays; track $index) {

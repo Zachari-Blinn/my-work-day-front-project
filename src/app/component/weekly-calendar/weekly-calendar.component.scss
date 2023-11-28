@@ -17,9 +17,8 @@
     padding: 10px;
   }
   .monthYear {
-    text-align: center;
-    font-weight: 600;
-    width: 150px;
+    font-weight: lighter;
+    font-size: 16px;
   }
   .header button {
     display: flex;
@@ -42,34 +41,38 @@
     padding: 5px;
     color: rgba(0, 0, 0, 0.5);
     font-weight: 500;
+    width: 40px;
   }
   .dates {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
   }
   .date {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 10px;
-    margin: auto;
+    padding: 5px;
     cursor: pointer;
     font-weight: 600;
     transition: 0.2s;
     border-radius: 15px;
+
+    height: 40px;
+    width: 40px;
   }
   .date:hover,
   .date.active {
     background: #FF3434;
+    font-size: 18px;
+    font-weight: 900;
   }
   .date.inactive {
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.6);
   }
   .date.inactive:hover {
     color: #fff;
   }
   .currentDate {
-    border: 1px solid #FF3434;
+    border: 2px solid #FF3434;
   }

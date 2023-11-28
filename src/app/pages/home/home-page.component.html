@@ -1,12 +1,12 @@
 <div>
 
   <!-- calendar -->
-  <weekly-calendar></weekly-calendar>
+  <weekly-calendar (selectedFormattedDate)="setSelectedFormattedDate($event)"></weekly-calendar>
 
   <!-- training session -->
   <div style="margin-top: 20px; margin-bottom: 12px;">
     <div style="font-size: 18px; color: #FF1D1D; padding-bottom: 5px;">Programme de votre journée :</div>
-    <div style="font-size: 22px; font-weight: lighter;">Samedi 8 Novembre</div>
+    <div style="font-size: 22px; font-weight: lighter;">{{ selectedFormattedDate }}</div>
   </div>
 
   <mat-chip-listbox aria-label="selection">

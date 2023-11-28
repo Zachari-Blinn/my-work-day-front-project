@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import * as moment from "moment";
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
     standalone: true,
@@ -16,6 +17,10 @@ import * as moment from "moment";
     styleUrls: ['./weekly-calendar.component.scss']
 })
 export class WeeklyCalendarComponent implements OnInit {
+
+    @Output()
+    public selectedFormattedDate = new EventEmitter<string>();
+
     public weekDays: { day: string, date: moment.Moment, isCurrentMonth: boolean, isActive: boolean, isCurrentDate: boolean }[] = [];
     public currentDate!: moment.Moment;
     public currentMonth!: string;
@@ -24,6 +29,7 @@ export class WeeklyCalendarComponent implements OnInit {
     ngOnInit() {
         this.currentDate = moment().locale('fr');
         this.generateDaysOfWeek();
+        this.selectedFormattedDate.emit(this.capitalizeFirstLetter(this.formattedSelectedDate));
     }
 
     public generateDaysOfWeek() {
@@ -34,7 +40,7 @@ export class WeeklyCalendarComponent implements OnInit {
         for (let i = 0; i < 7; i++) {
             const dayDate = startOfWeek.clone().add(i, 'days');
             this.weekDays.push({
-                day: dayDate.format('ddd'),
+                day: this.capitalizeFirstLetter(dayDate.format('ddd')),
                 date: dayDate,
                 isCurrentMonth: dayDate.month() === currentMonth,
                 isActive: dayDate.isSame(this.selectedDate, 'day'),
@@ -42,11 +48,19 @@ export class WeeklyCalendarComponent implements OnInit {
             });
         }
 
-        this.currentMonth = this.currentDate.format('MMMM');
+        this.currentMonth = this.capitalizeFirstLetter(this.currentDate.format('MMMM'));
+    }
+
+    public get formattedSelectedDate(): string {
+        // Format the selected date using Angular's DatePipe
+        const datePipe = new DatePipe('fr-FR'); // Use the desired locale
+        return datePipe.transform(this.selectedDate.toDate(), 'EEEE d MMMM y', 'fr-FR') || '';
     }
 
     public selectDate(day: { day: string, date: moment.Moment, isCurrentMonth: boolean, isActive: boolean }) {
         this.selectedDate = day.date;
+
+        this.selectedFormattedDate.emit(this.capitalizeFirstLetter(this.formattedSelectedDate));
 
         this.generateDaysOfWeek();
     }
@@ -59,5 +73,9 @@ export class WeeklyCalendarComponent implements OnInit {
     public nextWeek() {
         this.currentDate.add(1, 'week');
         this.generateDaysOfWeek();
+    }
+
+    private capitalizeFirstLetter(string: string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 }

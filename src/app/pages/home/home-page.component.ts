@@ -36,6 +36,9 @@ import { MatChipsModule } from "@angular/material/chips";
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
+
+  public selectedFormattedDate = "";
+
   public dayTrainingList: any[] = [
     {
       id: 1,
@@ -82,5 +85,9 @@ export class HomePageComponent {
   
   public goToCreateTrainingPage(): void {
     this.router.navigate(['/create-training']);
+  }
+
+  public setSelectedFormattedDate(date: string): void {
+    this.selectedFormattedDate = date;
   }
 }
