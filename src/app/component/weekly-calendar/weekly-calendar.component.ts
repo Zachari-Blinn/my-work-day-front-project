@@ -19,17 +19,19 @@ import { Output, EventEmitter } from '@angular/core';
 export class WeeklyCalendarComponent implements OnInit {
 
     @Output()
-    public selectedFormattedDate = new EventEmitter<string>();
+    public selectedDateChange = new EventEmitter<Date>();
 
     public weekDays: { day: string, date: moment.Moment, isCurrentMonth: boolean, isActive: boolean, isCurrentDate: boolean }[] = [];
     public currentDate!: moment.Moment;
     public currentMonth!: string;
+
     public selectedDate: moment.Moment = moment().startOf('day');
 
     ngOnInit() {
         this.currentDate = moment().locale('fr');
         this.generateDaysOfWeek();
-        this.selectedFormattedDate.emit(this.capitalizeFirstLetter(this.formattedSelectedDate));
+        // this.selectedFormattedDate.emit(this.capitalizeFirstLetter(this.formattedSelectedDate));
+        this.selectedDateChange.emit(this.selectedDate.toDate());
     }
 
     public generateDaysOfWeek() {
@@ -51,16 +53,13 @@ export class WeeklyCalendarComponent implements OnInit {
         this.currentMonth = this.capitalizeFirstLetter(this.currentDate.format('MMMM'));
     }
 
-    public get formattedSelectedDate(): string {
-        // Format the selected date using Angular's DatePipe
-        const datePipe = new DatePipe('fr-FR'); // Use the desired locale
-        return datePipe.transform(this.selectedDate.toDate(), 'EEEE d MMMM y', 'fr-FR') || '';
-    }
+
 
     public selectDate(day: { day: string, date: moment.Moment, isCurrentMonth: boolean, isActive: boolean }) {
         this.selectedDate = day.date;
 
-        this.selectedFormattedDate.emit(this.capitalizeFirstLetter(this.formattedSelectedDate));
+        // this.selectedFormattedDate.emit(this.capitalizeFirstLetter(this.formattedSelectedDate));
+        this.selectedDateChange.emit(this.selectedDate.toDate());
 
         this.generateDaysOfWeek();
     }

@@ -1,82 +1,52 @@
-.inline-calendar-card {
-  min-width: 208px;
-  // bord arrondi
-  border-radius: 15px;
-}
-
-.training-info {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-
-  .selected-day-trainings-list-container {
-    width: 100%;
-    min-width: 113px;
-    max-width: 140px;
-    .selected-day-trainings-list {
-      width: 100%;
-      height: 100%;
-      background-color: #E7DCD1;
-      border-radius: 15px;
-      display: flex;
-      padding-top: 15px;
-      flex-direction: column;
-      align-items: center;
-  
-      .day-square-container {
-        width: 54px;
-        height: 54px;
-        background-color: #FF3434;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-  
-        .day {
-          color: white;
-          font-size: 32px;
-          font-weight: bold;
-        }
-      }
-  
-      .date-container {
-        margin-top: 10px;
-  
-        .date {
-          font-size: 20px;
-          font-weight: lighter;
-        }
-      }
-    }
-  }
-}
-
 .training-model-slider-container {
   margin-top: 15px;
 }
 
-input[type="radio"] {
-  opacity: 0;
-  position: fixed;
-  width: 0;
+.training-session-text-container {
+  margin-top: 20px;
+  margin-bottom: 12px;
+
+  .day-program-text {
+    font-size: 18px;
+    color: #FF1D1D;
+    padding-bottom: 5px;
+  }
+
+  .selected-day-text {
+    font-size: 22px;
+    font-weight: lighter;
+  }
 }
 
-input[type="radio"] + label {
-  display: inline-block;
-  cursor: pointer;
-  background-color: #ddd;    
-  width: 100%;
-  padding: 7px 0;
+.button-container {
+  display: flex;
+  text-align: center;
+  margin: 35px 0;
+  justify-content: center;
 
+  .buttons {
+    background-color: #e4e4e4;
+    border-radius: 25px;
+    padding: 2px;
+
+    .button-validate {
+      background-color: black;
+      color: white;
+      box-shadow: none
+    }
+
+    .button-start {
+      background-color: #FF3434;
+      color: black;
+      box-shadow: none
+    }
+  }
 }
 
-input[type="radio"]:checked + label {
-  background-color:#bfb;
-}
+.my-activities-container {
+  margin-top: 20px;
 
-label {
-  white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .my-activities-text {
+    font-size: 18px;
+  }
 }
-

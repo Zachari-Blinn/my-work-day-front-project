@@ -1,44 +1,39 @@
 <div>
 
   <!-- calendar -->
-  <weekly-calendar (selectedFormattedDate)="setSelectedFormattedDate($event)"></weekly-calendar>
+  <weekly-calendar (selectedDateChange)="setSelectedDate($event)"></weekly-calendar>
 
   <!-- training session -->
-  <div style="margin-top: 20px; margin-bottom: 12px;">
-    <div style="font-size: 18px; color: #FF1D1D; padding-bottom: 5px;">Programme de votre journée :</div>
-    <div style="font-size: 22px; font-weight: lighter;">{{ selectedFormattedDate }}</div>
+  <div class="training-session-text-container">
+    <div class="day-program-text">Programme de votre journée :</div>
+    <div class="selected-day-text">{{ selectedFormattedDate }}</div>
   </div>
 
   <mat-chip-listbox aria-label="selection">
-    <mat-chip-option color="primary" selected>Haut du corps</mat-chip-option>
-    <mat-chip-option>Cardio</mat-chip-option>
-    <mat-chip-option>Kung-fu</mat-chip-option>
+    @for (training of trainingsOfSelectedDay; track $index) {
+      <mat-chip-option [selected]="training.selected">{{ training.name }}</mat-chip-option>
+    }
   </mat-chip-listbox>
 
   <!-- training session program -->
   <step-progress></step-progress>
 
   <!-- buttons -->
-  <div style="
-      display: flex;
-      text-align: center;
-      margin: 35px 0;
-      justify-content: center;
-    ">
-    <div style="background-color: #e4e4e4; border-radius: 25px; padding: 2px">
-      <button mat-fab extended style="background-color: black; color: white; box-shadow: none">
+  <div class="button-container">
+    <div class="buttons">
+      <button class="button-validate" mat-fab extended>
         <mat-icon>done</mat-icon>
         Valider
       </button>
-      <button mat-fab extended style="background-color: #FF3434; color: black; box-shadow: none">
+      <button class="button-start" mat-fab extended>
         <mat-icon>play_arrow</mat-icon>
         Commencer la séance
       </button>
     </div>
   </div>
 
-  <div style="margin-top: 20px;">
-    <div style="font-size: 18px;">Mes activités</div>
+  <div class="my-activities-container">
+    <div class="my-activities-text">Mes activités</div>
   </div>
 
   <!-- slider -->
