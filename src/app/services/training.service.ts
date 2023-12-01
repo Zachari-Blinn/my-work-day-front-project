@@ -32,4 +32,8 @@ export class TrainingService {
   public addExercise(trainingId: Training['id'], data: TrainingExercise): Observable<any> {
     return this.http.post(BASE_URL + '/' + trainingId + '/add-exercise', data, httpOptions);
   }
+
+  public getExercisesByTrainingId(trainingId: Training['id']): Observable<any> {
+    return this.http.get(BASE_URL + '/' + trainingId + '/exercises', httpOptions);
+  }
 }

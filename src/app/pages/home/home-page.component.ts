@@ -11,8 +11,8 @@ import { Router } from "@angular/router";
 import { DaySessionSelectButtonComponent } from "src/app/component/day-session-select-button/day-session-select-button.component";
 import { SessionStepComponent } from "src/app/component/session-step/session-step.component";
 import { WeeklyCalendarComponent } from "src/app/component/weekly-calendar/weekly-calendar.component";
-import { StepProgressComponent } from "src/app/component/step-progress/step-progress.component";
-import { MatChipsModule } from "@angular/material/chips";
+import { StepProgressComponent, TrainingStep } from "src/app/component/step-progress/step-progress.component";
+import { MatChipListboxChange, MatChipsModule } from "@angular/material/chips";
 import { Training } from "src/app/models/training.model";
 import { TrainingService } from "src/app/services/training.service";
 import { DateHelper } from "src/app/helper/date.helper";
@@ -45,6 +45,36 @@ export class HomePageComponent {
   public selectedDate: Date = new Date();
   public trainingsOfSelectedDay: any[] = [];
   public trainings?: Training[];
+  public currentSelectedTrainingSteps: TrainingStep[] = [];
+  public trainingHasSelected: boolean = false;
+
+  public selectedTrainingSteps: TrainingStep[] = [
+    {
+      name: 'Développé couché',
+      isDone: true,
+    },
+    {
+      name: 'Développé militaire',
+      isDone: true,
+    },
+    {
+      name: 'Elevation latérale',
+      isDone: true,
+    },
+    {
+      name: 'Curl biceps',
+      isDone: false,
+      isCurrent: true,
+    },
+    {
+      name: 'Gainage',
+      isDone: false,
+    },
+    {
+      name: 'Step 6',
+      isDone: false,
+    },
+  ];
 
   constructor(
     private _adapter: DateAdapter<any>,
@@ -62,6 +92,8 @@ export class HomePageComponent {
   }
 
   public setSelectedDate(date: Date): void {
+    this.currentSelectedTrainingSteps = [];
+    this.trainingHasSelected = false;
     this.selectedDate = date;
     this.selectedFormattedDate = this.dateHelper.formattedSelectedDate(date);
 
@@ -82,6 +114,13 @@ export class HomePageComponent {
         selected: index === 0, // La première occurrence a selected à true, les suivantes à false
       })) || [];
       console.log(this.trainingsOfSelectedDay);
+      
+      // On récupère les exercices du premier training selectionné
+      const firstTraining = this.trainingsOfSelectedDay[0];
+      if (firstTraining) {
+        this.trainingHasSelected = true;
+        this.retrieveExercisesByTrainingId(firstTraining.id);
+      }
   }
   
   public retrieveUserTrainings(): void {
@@ -94,5 +133,28 @@ export class HomePageComponent {
         console.error(error);
       }
     })
+  }
+
+  public retrieveExercisesByTrainingId(trainingId: string): void {
+    this.trainingService.getExercisesByTrainingId(trainingId).subscribe({
+      next: (result) => {
+        console.log(result);
+        //
+        this.currentSelectedTrainingSteps = result.map((trainingExercise: any, index: any) => ({
+          name: trainingExercise.exercise.name,
+          isDone: false,
+          isCurrent: false,
+        }));
+        console.log(this.currentSelectedTrainingSteps);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  }
+
+  onSelectedTrainingChange(event: MatChipListboxChange) {
+    this.trainingHasSelected = true;
+    this.retrieveExercisesByTrainingId(event.value);
   }
 }

@@ -11,3 +11,6 @@
     </li>
   </ul>
 </div>
+@if (steps.length === 0) {
+  <ng-content select="[no-content]"></ng-content>
+}

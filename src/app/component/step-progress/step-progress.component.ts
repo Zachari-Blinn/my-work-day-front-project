@@ -1,5 +1,5 @@
 import { NgFor } from "@angular/common";
-import { AfterViewInit, Component, ElementRef, HostListener, Renderer2, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, HostListener, Input, Renderer2, ViewChild } from "@angular/core";
 
 export interface TrainingStep {
   name: string;
@@ -18,37 +18,40 @@ export interface TrainingStep {
   exportAs: 'step-progress'
 })
 export class StepProgressComponent implements AfterViewInit {
+
+  @Input()
+  public steps: TrainingStep[] = [];
   
   @ViewChild('content', { static: true }) content!: ElementRef;
 
   
-  public steps: TrainingStep[] = [
-    {
-      name: 'Développé couché',
-      isDone: true,
-    },
-    {
-      name: 'Développé militaire',
-      isDone: true,
-    },
-    {
-      name: 'Elevation latérale',
-      isDone: true,
-    },
-    {
-      name: 'Curl biceps',
-      isDone: false,
-      isCurrent: true,
-    },
-    {
-      name: 'Gainage',
-      isDone: false,
-    },
-    {
-      name: 'Step 6',
-      isDone: false,
-    },
-  ];
+  // public steps: TrainingStep[] = [
+  //   {
+  //     name: 'Développé couché',
+  //     isDone: true,
+  //   },
+  //   {
+  //     name: 'Développé militaire',
+  //     isDone: true,
+  //   },
+  //   {
+  //     name: 'Elevation latérale',
+  //     isDone: true,
+  //   },
+  //   {
+  //     name: 'Curl biceps',
+  //     isDone: false,
+  //     isCurrent: true,
+  //   },
+  //   {
+  //     name: 'Gainage',
+  //     isDone: false,
+  //   },
+  //   {
+  //     name: 'Step 6',
+  //     isDone: false,
+  //   },
+  // ];
   
   constructor(private renderer: Renderer2) {}
 

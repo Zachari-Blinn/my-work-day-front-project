@@ -9,27 +9,52 @@
     <div class="selected-day-text">{{ selectedFormattedDate }}</div>
   </div>
 
-  <mat-chip-listbox aria-label="selection">
+  <mat-chip-listbox aria-label="selection" (change)="onSelectedTrainingChange($event)">
     @for (training of trainingsOfSelectedDay; track $index) {
-      <mat-chip-option [selected]="training.selected">{{ training.name }}</mat-chip-option>
+      <mat-chip-option [selected]="training.selected" [value]="training.id">{{ training.name }}</mat-chip-option>
     }
   </mat-chip-listbox>
 
   <!-- training session program -->
-  <step-progress></step-progress>
+  <step-progress [steps]="currentSelectedTrainingSteps">
+    <div no-content style="text-align: center;">
+      <img style="width: 180px;" src="/assets/images/morphis-fitness-cardio-for-healthy-heart.png" alt="no-content">
+      <div style="font-size: 16px; font-weight: 300; margin-top: 10px;">
+        <div style="font-weight: 400; text-decoration: underline;">Aucun programme</div>
+        <div> pour cette journée</div>
+      </div>
+    </div>
+  </step-progress>
 
   <!-- buttons -->
   <div class="button-container">
-    <div class="buttons">
-      <button class="button-validate" mat-fab extended>
-        <mat-icon>done</mat-icon>
-        Valider
-      </button>
-      <button class="button-start" mat-fab extended>
-        <mat-icon>play_arrow</mat-icon>
-        Commencer la séance
-      </button>
-    </div>
+    @if (currentSelectedTrainingSteps.length > 0) {
+      <div class="buttons">
+        <button class="button-validate" mat-fab extended>
+          <mat-icon>done</mat-icon>
+          Valider
+        </button>
+        <button class="button-start" mat-fab extended>
+          <mat-icon>play_arrow</mat-icon>
+          Commencer la séance
+        </button>
+      </div>
+    } @else if (currentSelectedTrainingSteps.length <= 0 && trainingHasSelected === true) {
+      <div class="buttons">
+        <button class="button-validate" mat-fab extended>
+          <mat-icon>add</mat-icon>
+          Ajouter un exercice
+        </button>
+      </div>
+    } @else {
+      <div class="buttons">
+        <button class="button-validate" mat-fab extended>
+          <mat-icon>add</mat-icon>
+          Ajouter une séance
+        </button>
+      </div>
+    }
+
   </div>
 
   <div class="my-activities-container">
