@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
 import { TrainingExercise } from '../../../../models/training-exercise.model';
+import { Router } from '@angular/router';
 
 interface TempoList {
   id: number;
@@ -61,7 +62,7 @@ export class AddExerciseForm implements OnInit {
   
   public exerciseControl = new FormControl(null, [Validators.required]);
 
-  constructor(private _formBuilder: FormBuilder, private trainingService: TrainingService, private exerciseService: ExerciseService) { }
+  constructor(private _formBuilder: FormBuilder, private trainingService: TrainingService, private exerciseService: ExerciseService, private router: Router) { }
 
   ngOnInit(): void {
     this.retrieveTraining(this.trainingId);
@@ -91,7 +92,6 @@ export class AddExerciseForm implements OnInit {
     this.exerciseService.getAll().subscribe({
       next: (result) => {
         this.exercises = result;
-        console.log(this.exercises);
         this.options = this.exercises.slice();
         this.filteredOptions = this.options.slice();
       },
@@ -128,6 +128,16 @@ export class AddExerciseForm implements OnInit {
   
   public  addSeries(): void {
     const newSeriesFormGroup = this.newSeries();
+
+    if (this.series.length > 0) {
+      const lastSeries = this.series.controls[this.series.length - 1];
+  
+      // Copy values from the last series to the new one
+      ['repsCount', 'weight', 'restTime', 'tempo'].forEach((controlName) => {
+        newSeriesFormGroup.get(controlName)?.setValue(lastSeries.get(controlName)?.value);
+      });
+    }
+  
     newSeriesFormGroup.get('positionIndex')?.setValue(this.currentPositionIndex++);
     this.series.push(newSeriesFormGroup);
   }
@@ -170,18 +180,11 @@ export class AddExerciseForm implements OnInit {
   public currentPositionIndex: number = 1;
 
   public drop(event: CdkDragDrop<string[]>) {
-    console.log(event);
     moveItemInArray(this.series.controls, event.previousIndex, event.currentIndex);
     
-      // Update positionIndex after the drop
     this.series.controls.forEach((control, index) => {
       control.get('positionIndex')?.setValue(index);
     });
-    
-    // show data of series
-    // console.log(this.series.controls.forEach((control, index) => {
-    //   console.log(control.value);
-    // }));
   }
   
   public displayFn(exercise: Exercise): string {
@@ -197,5 +200,9 @@ export class AddExerciseForm implements OnInit {
         console.error(error);
       }
     });
+  }
+
+  public goBack(): void {
+    this.router.navigate(['home']);
   }
 }

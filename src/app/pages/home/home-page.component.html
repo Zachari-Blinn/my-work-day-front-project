@@ -41,16 +41,16 @@
       </div>
     } @else if (currentSelectedTrainingSteps.length <= 0 && trainingHasSelected === true) {
       <div class="buttons">
-        <button class="button-validate" mat-fab extended>
+        <button class="button-validate" mat-fab extended (click)="openAddExerciseFormPage()">
           <mat-icon>add</mat-icon>
           Ajouter un exercice
         </button>
       </div>
     } @else {
       <div class="buttons">
-        <button class="button-validate" mat-fab extended>
+        <button class="button-validate" mat-fab extended (click)="openAddActivityDialog()">
           <mat-icon>add</mat-icon>
-          Ajouter une séance
+          Ajouter une activité
         </button>
       </div>
     }

@@ -2,6 +2,11 @@
   <div style="margin: 10px 0;">
     training name: {{training?.name}} / training id: {{trainingId}}
   </div>
+
+  <!-- todo button back -->
+  <button mat-icon-button aria-label="Example icon button with a home icon" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
   
   <form [formGroup]="addTrainingExerciseAndSeriesForm">
     

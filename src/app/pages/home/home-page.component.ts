@@ -17,6 +17,8 @@ import { Training } from "src/app/models/training.model";
 import { TrainingService } from "src/app/services/training.service";
 import { DateHelper } from "src/app/helper/date.helper";
 import * as moment from "moment";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { AddActivityDialogComponent } from "src/app/component/dialog/add-activity-dialog/add-activity-dialog.component";
 
 @Component({
   standalone: true,
@@ -34,7 +36,8 @@ import * as moment from "moment";
     SessionStepComponent,
     WeeklyCalendarComponent,
     StepProgressComponent,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
@@ -47,41 +50,16 @@ export class HomePageComponent {
   public trainings?: Training[];
   public currentSelectedTrainingSteps: TrainingStep[] = [];
   public trainingHasSelected: boolean = false;
-
-  public selectedTrainingSteps: TrainingStep[] = [
-    {
-      name: 'Développé couché',
-      isDone: true,
-    },
-    {
-      name: 'Développé militaire',
-      isDone: true,
-    },
-    {
-      name: 'Elevation latérale',
-      isDone: true,
-    },
-    {
-      name: 'Curl biceps',
-      isDone: false,
-      isCurrent: true,
-    },
-    {
-      name: 'Gainage',
-      isDone: false,
-    },
-    {
-      name: 'Step 6',
-      isDone: false,
-    },
-  ];
+  public selectedTrainingId: string = '';
+  public selectedTrainingSteps: TrainingStep[] = [];
 
   constructor(
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
     private router: Router,
     private trainingService: TrainingService,
-    private dateHelper: DateHelper
+    private dateHelper: DateHelper,
+    public dialog: MatDialog
   ) {
     this._locale = 'fr';
     this._adapter.setLocale(this._locale);
@@ -94,6 +72,7 @@ export class HomePageComponent {
   public setSelectedDate(date: Date): void {
     this.currentSelectedTrainingSteps = [];
     this.trainingHasSelected = false;
+    this.selectedTrainingId = '';
     this.selectedDate = date;
     this.selectedFormattedDate = this.dateHelper.formattedSelectedDate(date);
 
@@ -113,12 +92,12 @@ export class HomePageComponent {
         name: training.name,
         selected: index === 0, // La première occurrence a selected à true, les suivantes à false
       })) || [];
-      console.log(this.trainingsOfSelectedDay);
       
       // On récupère les exercices du premier training selectionné
       const firstTraining = this.trainingsOfSelectedDay[0];
       if (firstTraining) {
         this.trainingHasSelected = true;
+        this.selectedTrainingId = firstTraining.id;
         this.retrieveExercisesByTrainingId(firstTraining.id);
       }
   }
@@ -138,14 +117,11 @@ export class HomePageComponent {
   public retrieveExercisesByTrainingId(trainingId: string): void {
     this.trainingService.getExercisesByTrainingId(trainingId).subscribe({
       next: (result) => {
-        console.log(result);
-        //
         this.currentSelectedTrainingSteps = result.map((trainingExercise: any, index: any) => ({
           name: trainingExercise.exercise.name,
           isDone: false,
           isCurrent: false,
         }));
-        console.log(this.currentSelectedTrainingSteps);
       },
       error: (error) => {
         console.error(error);
@@ -154,7 +130,31 @@ export class HomePageComponent {
   }
 
   onSelectedTrainingChange(event: MatChipListboxChange) {
+    if (!event.value) {
+      this.trainingHasSelected = false;
+      this.selectedTrainingId = '';
+      this.currentSelectedTrainingSteps = [];
+      return;
+    }
     this.trainingHasSelected = true;
+    this.selectedTrainingId = event.value;
     this.retrieveExercisesByTrainingId(event.value);
+  }
+
+  openAddActivityDialog(): void {
+    this.dialog.open(AddActivityDialogComponent, {
+      width: '100vw',
+      maxWidth: '90vw',
+      data: {
+        selectedDate: this.selectedDate
+      }
+    });
+  }
+
+  openAddExerciseFormPage(): void {
+    if (!this.selectedTrainingId) {
+      return;
+    }
+    this.router.navigate(['training', this.selectedTrainingId, 'add-exercise']);
   }
 }

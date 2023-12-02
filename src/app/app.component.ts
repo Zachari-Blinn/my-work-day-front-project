@@ -53,7 +53,6 @@ export class AppComponent implements OnInit {
   public logout(): void {
     this.authService.logout().subscribe({
       next: res => {
-        console.log(res);
         this.storageService.clean();
         
         window.location.reload();

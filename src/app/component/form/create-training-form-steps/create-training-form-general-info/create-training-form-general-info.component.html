@@ -1,4 +1,8 @@
 <div>
+  <button mat-icon-button aria-label="Example icon button with a home icon" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  
   <form [formGroup]="trainingFormGeneralInfo" (ngSubmit)="onSubmit()">
     <mat-form-field class="example-full-width" style="width: 100%">
       <mat-label>Nom de la séance</mat-label>

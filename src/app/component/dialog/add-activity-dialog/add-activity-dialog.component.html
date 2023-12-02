@@ -1,0 +1,14 @@
+<span class="dialog-title" mat-dialog-title>
+  <span style="font-size: 24px;">Ajouter une activité</span>
+  <div style="font-size: 16px;">pour le {{ selectedFormattedDate }}</div>
+</span>
+<div mat-dialog-content>
+  <button class="button-start" mat-fab extended style="width: 100%; margin-bottom: 20px;">
+    <mat-icon>add</mat-icon>
+    activité existante
+  </button>
+  <button class="button-start" mat-fab extended style="width: 100%;" (click)="goToNewTraining()">
+    <mat-icon>add</mat-icon>
+    nouvelle activité
+  </button>
+</div>

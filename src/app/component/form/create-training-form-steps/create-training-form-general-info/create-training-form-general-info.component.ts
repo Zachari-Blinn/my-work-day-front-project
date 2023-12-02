@@ -12,6 +12,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { TrainingService } from "../../../../services/training.service";
+import { Router } from "@angular/router";
 
 interface Sport {
   value: string;
@@ -49,7 +50,7 @@ export class CreateTrainingFormGeneralInfo implements OnInit {
 
   public trainingFormGeneralInfo!: FormGroup;
 
-  public constructor(private _formBuilder: FormBuilder, private trainingService: TrainingService) { }
+  public constructor(private _formBuilder: FormBuilder, private trainingService: TrainingService, private router: Router) { }
 
   public submitted: boolean = false;
 
@@ -65,8 +66,6 @@ export class CreateTrainingFormGeneralInfo implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log('onSubmit');
-
     if (this.trainingFormGeneralInfo.invalid) {
       return;
     }
@@ -105,4 +104,7 @@ export class CreateTrainingFormGeneralInfo implements OnInit {
     },
   ];
 
+  public goBack(): void {
+    this.router.navigate(['home']);
+  }
 }
