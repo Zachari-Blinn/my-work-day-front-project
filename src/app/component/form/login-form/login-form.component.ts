@@ -7,6 +7,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { Router } from "@angular/router";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   standalone: true,
@@ -17,7 +18,8 @@ import { Router } from "@angular/router";
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
@@ -42,7 +44,8 @@ export class LoginFormComponent implements OnInit {
   public errorMessage = '';
   public roles: string[] = [];
   public passwordHide: boolean = true;
-  
+  public isLoading: boolean = false;
+
   public constructor(private _formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService, private router: Router) { }
 
   public ngOnInit(): void {
@@ -56,7 +59,9 @@ export class LoginFormComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    
+
+    this.isLoading = true;
+    this.isLoginFailed = false;
     this.loginForm.disable();
     
     const { username, password } = this.loginForm.value;
@@ -65,16 +70,17 @@ export class LoginFormComponent implements OnInit {
       next: data => {
         this.storageService.saveUser(data);
 
-        this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
         // this.reloadPage();
+        this.isLoading = false;
         this.router.navigateByUrl('/home');
       },
       error: err => {
         console.log(err);
         this.errorMessage = err.message;
         this.isLoginFailed = true;
+        this.isLoading = false;
       },
     });
     this.loginForm.enable();

@@ -3,6 +3,13 @@
   <h2 class="title">Bienvenue!</h2>
   <p class="sub-title">Entrez votre nom d'utilisateur et mot de passe</p>
 
+  @if (isLoginFailed) {
+    <div class="error-message">
+      <mat-icon>error_outline</mat-icon>
+      <span>Le nom d'utilisateur ou le mot de passe est incorrect</span>
+    </div>
+  }
+
   <form [formGroup]="loginForm" aria-labelledby="login-heading">
 
     <mat-form-field>
@@ -23,9 +30,16 @@
       <div class="forgot-password">Je n'arrive pas à me connecter</div>
     </a>
 
-    <button class="login-button" mat-fab extended type="submit" [disabled]="loginForm.invalid || loginForm.pending"
+    <button class="login-button" mat-fab extended type="submit" [disabled]="loginForm.invalid || loginForm.pending || isLoading"
       (click)="onSubmit()">
-      <mat-icon>play_arrow</mat-icon>
+      @if (isLoading) {
+        <mat-icon>
+          <mat-spinner color="accent" diameter="25"></mat-spinner>
+        </mat-icon>
+        
+      } @else {
+        <mat-icon>play_arrow</mat-icon>
+      }
       Se connecter
     </button>
 

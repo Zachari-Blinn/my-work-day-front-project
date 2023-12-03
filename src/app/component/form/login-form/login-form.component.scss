@@ -1,7 +1,12 @@
-// Variables
 $primary-color: #FF1D1D;
 
-// Container styles
+.error-message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: red;
+}
+
 .login-content {
   display: flex;
   flex-direction: column;
