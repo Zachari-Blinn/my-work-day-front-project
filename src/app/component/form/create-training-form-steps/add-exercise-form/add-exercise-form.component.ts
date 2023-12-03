@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
 import { TrainingExercise } from '../../../../models/training-exercise.model';
 import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 interface TempoList {
   id: number;
@@ -39,7 +40,8 @@ interface TempoList {
     MatIconModule,
     CdkDropList,
     CdkDrag,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgClass
   ],
   templateUrl: './add-exercise-form.component.html',
   styleUrls: ['./add-exercise-form.component.scss'],
@@ -49,7 +51,7 @@ export class AddExerciseForm implements OnInit {
 
   @Input({ required: true })
   public trainingId!: Training['id'];
-
+  public isDragging = false;
   public training?: Training;
   public exercises: Exercise[] = [];
   public filteredOptions: Exercise[] = [];
@@ -61,6 +63,7 @@ export class AddExerciseForm implements OnInit {
   public addTrainingExerciseAndSeriesForm: FormGroup = new FormGroup({});
   
   public exerciseControl = new FormControl(null, [Validators.required]);
+  public deleteList!: string|CdkDropList<any>;
 
   constructor(private _formBuilder: FormBuilder, private trainingService: TrainingService, private exerciseService: ExerciseService, private router: Router) { }
 
@@ -205,4 +208,13 @@ export class AddExerciseForm implements OnInit {
   public goBack(): void {
     this.router.navigate(['home']);
   }
+
+  public deleteDrop(event: CdkDragDrop<string[]>): void {
+    console.log("deleteDrop ", event);
+    // Récupérez l'élément déplacé
+    const item = event.item.data;
+  
+    this.removeSeries(item);
+  }
+  
 }

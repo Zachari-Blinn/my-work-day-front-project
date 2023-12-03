@@ -30,7 +30,7 @@
   <div class="button-container">
     @if (currentSelectedTrainingSteps.length > 0) {
       <div class="buttons">
-        <button class="button-validate" mat-fab extended>
+        <button class="button-validate" mat-fab extended (click)="openValidateTrainingDialog()">
           <mat-icon>done</mat-icon>
           Valider
         </button>

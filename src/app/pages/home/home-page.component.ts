@@ -19,6 +19,7 @@ import { DateHelper } from "src/app/helper/date.helper";
 import * as moment from "moment";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { AddActivityDialogComponent } from "src/app/component/dialog/add-activity-dialog/add-activity-dialog.component";
+import { ValidateActivityDialogComponent } from "src/app/component/dialog/validate-training-dialog/validate-training-dialog.component";
 
 @Component({
   standalone: true,
@@ -156,5 +157,16 @@ export class HomePageComponent {
       return;
     }
     this.router.navigate(['training', this.selectedTrainingId, 'add-exercise']);
+  }
+
+  public openValidateTrainingDialog(): void {
+    this.dialog.open(ValidateActivityDialogComponent, {
+      width: '100vw',
+      maxWidth: '90vw',
+      data: {
+        selectedDate: this.selectedDate,
+        selectedTrainingId: this.selectedTrainingId
+      }
+    });
   }
 }
