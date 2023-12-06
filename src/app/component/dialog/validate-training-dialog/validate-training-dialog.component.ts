@@ -1,13 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
-  MatDialogRef,
   MatDialogModule,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { DateHelper } from 'src/app/helper/date.helper';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { TrainingService } from 'src/app/services/training.service';
 
 export interface DialogData {
@@ -30,8 +29,10 @@ export interface DialogData {
 export class ValidateActivityDialogComponent {
   public selectedFormattedDate: string = "";
   public selectedTrainingId: string = '';
+  public selectedDate: Date = new Date();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, private dateHelper: DateHelper, private trainingService: TrainingService) {
+    this.selectedDate = data.selectedDate;
     this.selectedFormattedDate = this.dateHelper.formattedSelectedDate(data.selectedDate);
     this.selectedTrainingId = data.selectedTrainingId;
   }
@@ -40,7 +41,9 @@ export class ValidateActivityDialogComponent {
     if (!this.selectedTrainingId) {
       return;
     }
-    this.trainingService.validateTraining(this.selectedTrainingId).subscribe(() => {
+    this.trainingService.validateTraining(this.selectedTrainingId, {
+      "trainingDay": this.selectedDate
+    }).subscribe(() => {
       window.location.reload();
     });
   }

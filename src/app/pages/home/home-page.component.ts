@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { DateAdapter, MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
@@ -116,7 +116,7 @@ export class HomePageComponent {
   }
 
   public retrieveExercisesByTrainingId(trainingId: string): void {
-    this.trainingService.getExercisesByTrainingId(trainingId).subscribe({
+    this.trainingService.getTemplateExercisesByTrainingId(trainingId).subscribe({
       next: (result) => {
         this.currentSelectedTrainingSteps = result.map((trainingExercise: any, index: any) => ({
           name: trainingExercise.exercise.name,
@@ -130,7 +130,7 @@ export class HomePageComponent {
     })
   }
 
-  onSelectedTrainingChange(event: MatChipListboxChange) {
+  public onSelectedTrainingChange(event: MatChipListboxChange) {
     if (!event.value) {
       this.trainingHasSelected = false;
       this.selectedTrainingId = '';
@@ -142,7 +142,7 @@ export class HomePageComponent {
     this.retrieveExercisesByTrainingId(event.value);
   }
 
-  openAddActivityDialog(): void {
+  public openAddActivityDialog(): void {
     this.dialog.open(AddActivityDialogComponent, {
       width: '100vw',
       maxWidth: '90vw',
@@ -152,7 +152,7 @@ export class HomePageComponent {
     });
   }
 
-  openAddExerciseFormPage(): void {
+  public openAddExerciseFormPage(): void {
     if (!this.selectedTrainingId) {
       return;
     }

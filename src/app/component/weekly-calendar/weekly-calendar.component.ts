@@ -25,13 +25,11 @@ export class WeeklyCalendarComponent implements OnInit {
   public weekDays: { day: string, date: moment.Moment, isCurrentMonth: boolean, isActive: boolean, isCurrentDate: boolean }[] = [];
   public currentDate!: moment.Moment;
   public currentMonth!: string;
-
   public selectedDate: moment.Moment = moment().startOf('day');
 
   ngOnInit() {
     this.currentDate = moment().locale('fr');
     this.generateDaysOfWeek();
-    // this.selectedFormattedDate.emit(this.capitalizeFirstLetter(this.formattedSelectedDate));
     this.selectedDateChange.emit(this.selectedDate.toDate());
   }
 
@@ -54,12 +52,14 @@ export class WeeklyCalendarComponent implements OnInit {
     this.currentMonth = this.capitalizeFirstLetter(this.currentDate.format('MMMM'));
   }
 
-
-
   public selectDate(day: { day: string, date: moment.Moment, isCurrentMonth: boolean, isActive: boolean }) {
+    // check if provided date is selectedDate
+    if (day.isActive) {
+      return;
+    }
+
     this.selectedDate = day.date;
 
-    // this.selectedFormattedDate.emit(this.capitalizeFirstLetter(this.formattedSelectedDate));
     this.selectedDateChange.emit(this.selectedDate.toDate());
 
     this.generateDaysOfWeek();

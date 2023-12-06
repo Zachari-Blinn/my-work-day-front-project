@@ -33,11 +33,11 @@ export class TrainingService {
     return this.http.post(BASE_URL + '/' + trainingId + '/add-exercise', data, httpOptions);
   }
 
-  public getExercisesByTrainingId(trainingId: Training['id']): Observable<any> {
-    return this.http.get(BASE_URL + '/' + trainingId + '/exercises', httpOptions);
+  public getTemplateExercisesByTrainingId(trainingId: Training['id']): Observable<any> {
+    return this.http.get(BASE_URL + '/' + trainingId + '/exercises' + '?fetchTemplate=true', httpOptions);
   }
 
-  public validateTraining(trainingId: Training['id']): Observable<any> {
-    return this.http.post(BASE_URL + '/' + trainingId + '/validate', httpOptions);
+  public validateTraining(trainingId: Training['id'], data: any): Observable<any> {
+    return this.http.post(BASE_URL + '/' + trainingId + '/validate', data, httpOptions);
   }
 }
