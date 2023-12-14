@@ -28,7 +28,7 @@ interface SportsGroup {
 
 @Component({
   standalone: true,
-  selector: 'create-training-form-general-info',
+  selector: 'app-create-training-form-general-info',
   imports: [
     MatFormFieldModule, 
     MatInputModule, 
@@ -46,7 +46,7 @@ interface SportsGroup {
   styleUrls: ['./create-training-form-general-info.component.scss'],
   exportAs: 'create-training-form-general-info'
 })
-export class CreateTrainingFormGeneralInfo implements OnInit {
+export class CreateTrainingFormGeneralInfoComponent implements OnInit {
 
   public trainingFormGeneralInfo!: FormGroup;
 

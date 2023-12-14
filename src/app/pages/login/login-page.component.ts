@@ -3,7 +3,7 @@ import { LoginFormComponent } from "../../component/form/login-form/login-form.c
 
 @Component({
   standalone: true,
-  selector: 'login-page',
+  selector: 'app-login-page',
   imports: [
     LoginFormComponent
   ],

@@ -11,7 +11,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   standalone: true,
-  selector: 'login-form',
+  selector: 'app-login-form',
   imports: [
     FormsModule,
     ReactiveFormsModule,

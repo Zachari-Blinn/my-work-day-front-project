@@ -15,7 +15,7 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'validate-training-dialog',
+  selector: 'app-validate-training-dialog',
   templateUrl: './validate-training-dialog.component.html',
   styleUrls: ['./validate-training-dialog.component.scss'],
   standalone: true,

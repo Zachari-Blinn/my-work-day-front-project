@@ -1,15 +1,14 @@
 import { Component } from "@angular/core";
-import { ModifyBeforeValidateTrainingForm } from "src/app/component/form/modify-before-validate-training-form/modify-before-validate-training-form.component";
+import { ModifyBeforeValidateTrainingFormComponent } from "src/app/component/form/modify-before-validate-training-form/modify-before-validate-training-form.component";
 
 @Component({
   standalone: true,
-  selector: 'modify-before-validate-training-page',
+  selector: 'app-modify-before-validate-training-page',
   imports: [
-    ModifyBeforeValidateTrainingForm
+    ModifyBeforeValidateTrainingFormComponent
   ],
   templateUrl: './modify-before-validate-training-page.component.html',
   styleUrls: ['./modify-before-validate-training-page.component.scss'],
-  exportAs: 'modify-before-validate-training-page'
 })
 export class ModifyBeforeValidateTrainingPageComponent {
 

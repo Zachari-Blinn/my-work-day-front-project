@@ -23,7 +23,7 @@ import { ValidateActivityDialogComponent } from "src/app/component/dialog/valida
 
 @Component({
   standalone: true,
-  selector: 'home-page',
+  selector: 'app-home-page',
   imports: [
     MatCardModule,
     MatDatepickerModule,
@@ -85,7 +85,7 @@ export class HomePageComponent {
   }
 
   private fillChipsTrainingOfSelectedDay(date: Date): void {
-    const selectedDay: String = moment(date).format('dddd').toUpperCase();
+    const selectedDay: string = moment(date).format('dddd').toUpperCase();
     this.trainingsOfSelectedDay = this.trainings
       ?.filter(training => training.trainingDays?.includes(selectedDay as string))
       .map((training, index) => ({

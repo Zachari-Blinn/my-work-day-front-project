@@ -3,7 +3,7 @@ import { AvatarComponent } from "../avatar/avatar.component";
 
 @Component({
   standalone: true,
-  selector: 'header-section',
+  selector: 'app-header-section',
   imports: [
     AvatarComponent,
   ],

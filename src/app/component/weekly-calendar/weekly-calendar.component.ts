@@ -8,7 +8,7 @@ import { NgxFlickingModule } from "@egjs/ngx-flicking";
 
 @Component({
   standalone: true,
-  selector: 'weekly-calendar',
+  selector: 'app-weekly-calendar',
   imports: [
     MatButtonModule,
     MatIconModule,

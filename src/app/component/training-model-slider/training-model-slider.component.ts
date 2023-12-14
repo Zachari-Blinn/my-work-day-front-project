@@ -7,7 +7,7 @@ import { RouterModule } from "@angular/router";
 
 @Component({
   standalone: true,
-  selector: "training-model-slider",
+  selector: "app-training-model-slider",
   templateUrl: "./training-model-slider.component.html",
   styleUrl: "./training-model-slider.component.scss",
   imports: [

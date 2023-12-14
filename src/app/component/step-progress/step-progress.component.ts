@@ -9,7 +9,7 @@ export interface TrainingStep {
 
 @Component({
   standalone: true,
-  selector: 'step-progress',
+  selector: 'app-step-progress',
   imports: [
     NgFor
   ],

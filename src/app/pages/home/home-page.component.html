@@ -1,7 +1,7 @@
 <div>
 
   <!-- calendar -->
-  <weekly-calendar (selectedDateChange)="setSelectedDate($event)"></weekly-calendar>
+  <app-weekly-calendar (selectedDateChange)="setSelectedDate($event)"></app-weekly-calendar>
 
   <!-- training session -->
   <div class="training-session-text-container">
@@ -16,7 +16,7 @@
   </mat-chip-listbox>
 
   <!-- training session program -->
-  <step-progress [steps]="currentSelectedTrainingSteps">
+  <app-step-progress [steps]="currentSelectedTrainingSteps">
     <div no-content style="text-align: center;">
       <img style="width: 180px;" src="/assets/images/morphis-fitness-cardio-for-healthy-heart.png" alt="no-content">
       <div style="font-size: 16px; font-weight: 300; margin-top: 10px;">
@@ -24,7 +24,7 @@
         <div> pour cette journée</div>
       </div>
     </div>
-  </step-progress>
+  </app-step-progress>
 
   <!-- buttons -->
   <div class="button-container">
@@ -63,7 +63,7 @@
 
   <!-- slider -->
   <div class="training-model-slider-container">
-    <training-model-slider></training-model-slider>
+    <app-training-model-slider></app-training-model-slider>
   </div>
 
 

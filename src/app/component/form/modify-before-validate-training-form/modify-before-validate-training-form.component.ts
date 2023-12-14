@@ -1,12 +1,10 @@
 import { Component } from "@angular/core";
-import {
-  _MatSlideToggleRequiredValidatorModule
-} from '@angular/material/slide-toggle';
+import { _MatSlideToggleRequiredValidatorModule } from '@angular/material/slide-toggle';
 import { Router } from "@angular/router";
 
 @Component({
   standalone: true,
-  selector: 'modify-before-validate-training-form',
+  selector: 'app-modify-before-validate-training-form',
   imports: [
 
   ],
@@ -14,7 +12,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./modify-before-validate-training-form.component.scss'],
   exportAs: 'modify-before-validate-training-form'
 })
-export class ModifyBeforeValidateTrainingForm {
+export class ModifyBeforeValidateTrainingFormComponent {
 
   public selectedDate!: Date;
 

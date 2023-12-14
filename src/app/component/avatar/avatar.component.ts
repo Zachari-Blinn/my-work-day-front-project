@@ -4,7 +4,7 @@ import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   standalone: true,
-  selector: 'avatar',
+  selector: 'app-avatar',
   imports: [
     MatIconModule,
     NgIf,
@@ -13,7 +13,6 @@ import { MatIconModule } from "@angular/material/icon";
   ],
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
-  exportAs: 'avatar'
 })
 export class AvatarComponent {
   public file: string = '';

@@ -27,7 +27,7 @@ interface TempoList {
 
 @Component({
   standalone: true,
-  selector: 'add-exercise-form',
+  selector: 'app-add-exercise-form',
   imports: [
     FormsModule,
     MatFormFieldModule,
@@ -47,7 +47,7 @@ interface TempoList {
   styleUrls: ['./add-exercise-form.component.scss'],
   exportAs: 'add-exercise'
 })
-export class AddExerciseForm implements OnInit {
+export class AddExerciseFormComponent implements OnInit {
 
   @Input({ required: true })
   public trainingId!: Training['id'];

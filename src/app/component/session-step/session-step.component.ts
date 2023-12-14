@@ -14,7 +14,7 @@ export interface StepperContent {
 }
 
 @Component({
-  selector: 'session-step',
+  selector: 'app-session-step',
   standalone: true,
   imports: [
     MatButtonModule,

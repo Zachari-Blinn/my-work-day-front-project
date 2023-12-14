@@ -14,7 +14,7 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'add-activity-dialog',
+  selector: 'app-add-activity-dialog',
   templateUrl: './add-activity-dialog.component.html',
   styleUrls: ['./add-activity-dialog.component.scss'],
   standalone: true,
