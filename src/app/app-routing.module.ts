@@ -5,6 +5,7 @@ import { CreateTrainingFormPageComponent } from './pages/form/create-training-fo
 import { LoginPageComponent } from './pages/login/login-page.component';
 import { AccessGuard } from './guards/access.guard';
 import { AddExerciseFormPageComponent } from './pages/form/add-exercise-form-page/add-exercise-form-page.component';
+import { ModifyBeforeValidateTrainingPageComponent } from './pages/form/modify-before-validate-training-page/modify-before-validate-training-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'create-training', component: CreateTrainingFormPageComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
   { path: 'login', component: LoginPageComponent, data: { requiresLogin: false } },
   { path: 'training/:trainingId/add-exercise', component: AddExerciseFormPageComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
+  { path: 'training/:trainingId/modify-before-validate', component: ModifyBeforeValidateTrainingPageComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
   // { path: 'register', component: RegisterPageComponent },
   // { path: 'series-exercise-form', component: SeriesExerciseFormComponent }
 ];
