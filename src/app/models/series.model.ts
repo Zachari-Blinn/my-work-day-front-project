@@ -1,16 +1,16 @@
 export class Series {
+  public createdBy?: number;
+  public createdOn?: Date;
+  public difficulty?: string;
   public id?: any;
-  public weight?: number;
-  public restTime?: string;
+  public isActive?: boolean;
+  public lastUpdatedBy?: number;
+  public lastUpdatedOn?: Date;
   public notes?: string;
-  public repsCount?: number;
-  public tempo?: string;
+  public parent?: number;
   public positionIndex?: number;
-  public difficulty?: Difficulty;
-}
-
-enum Difficulty {
-  EASY,
-  NORMAL,
-  HARD,
+  public repsCount?: number;
+  public restTime?: string;
+  public weight?: number;
+  public tempo?: string;
 }

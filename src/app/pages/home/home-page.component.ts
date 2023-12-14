@@ -95,7 +95,7 @@ export class HomePageComponent implements OnInit {
     this.trainingsOfSelectedDay =
       this.trainings
         ?.filter(
-          training => training.trainingDays?.includes(selectedDay as string)
+          training => training.trainingDays?.includes(selectedDay as any)
         )
         .map((training, index) => ({
           id: training.id,

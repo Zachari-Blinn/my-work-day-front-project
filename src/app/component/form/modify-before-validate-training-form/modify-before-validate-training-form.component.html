@@ -1,0 +1,25 @@
+<form [formGroup]="trainingSessionForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="trainingSession">
+    @for (trainingSession of getTrainingSessionControls(); track $index) {
+      <div [formGroupName]="$index">
+        <h2>{{ trainingSession.get('exercise')?.value?.name }}</h2>
+
+        <label for="notes">Notes:</label>
+        <input type="text" formControlName="notes" />
+
+        <div formArrayName="seriesList">
+          @for (series of getSeriesListControls($index); track $index) {
+            <div [formGroupName]="$index">
+              <label for="repsCount">Reps:</label>
+              <input type="number" formControlName="repsCount" />
+
+              <label for="weight">Weight:</label>
+              <input type="number" formControlName="weight" />
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  <button type="submit">Valider</button>
+</form>

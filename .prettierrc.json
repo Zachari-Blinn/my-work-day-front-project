@@ -7,6 +7,5 @@
   "arrowParens": "avoid",
   "trailingComma": "es5",
   "bracketSameLine": true,
-  "printWidth": 80,
-  "linebreak-style": [true, "LF"]
+  "printWidth": 80
 }
