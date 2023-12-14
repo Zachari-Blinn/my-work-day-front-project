@@ -12,5 +12,5 @@ export class Series {
 enum Difficulty {
   EASY,
   NORMAL,
-  HARD
+  HARD,
 }

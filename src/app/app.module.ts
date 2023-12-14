@@ -13,9 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { httpInterceptorProviders } from './helper/auth.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,9 +23,9 @@ import { httpInterceptorProviders } from './helper/auth.interceptor';
     HeaderSectionComponent,
     MatToolbarModule,
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

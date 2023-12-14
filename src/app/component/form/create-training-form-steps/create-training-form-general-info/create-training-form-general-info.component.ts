@@ -1,18 +1,27 @@
-import { Component, OnInit } from "@angular/core";
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
+import { Component, OnInit } from '@angular/core';
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatSelectModule } from "@angular/material/select";
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import {
   MatSlideToggleModule,
   _MatSlideToggleRequiredValidatorModule,
 } from '@angular/material/slide-toggle';
-import {MatChipsModule} from '@angular/material/chips';
-import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
-import { TrainingService } from "../../../../services/training.service";
-import { Router } from "@angular/router";
+import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { TrainingService } from '../../../../services/training.service';
+import { Router } from '@angular/router';
 
 interface Sport {
   value: string;
@@ -25,18 +34,17 @@ interface SportsGroup {
   sports: Sport[];
 }
 
-
 @Component({
   standalone: true,
   selector: 'app-create-training-form-general-info',
   imports: [
-    MatFormFieldModule, 
-    MatInputModule, 
-    MatCheckboxModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
-    MatSelectModule, 
-    MatSlideToggleModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     _MatSlideToggleRequiredValidatorModule,
     MatChipsModule,
     MatButtonModule,
@@ -44,24 +52,34 @@ interface SportsGroup {
   ],
   templateUrl: './create-training-form-general-info.component.html',
   styleUrls: ['./create-training-form-general-info.component.scss'],
-  exportAs: 'create-training-form-general-info'
+  exportAs: 'create-training-form-general-info',
 })
 export class CreateTrainingFormGeneralInfoComponent implements OnInit {
-
   public trainingFormGeneralInfo!: FormGroup;
 
-  public constructor(private _formBuilder: FormBuilder, private trainingService: TrainingService, private router: Router) { }
+  public constructor(
+    private _formBuilder: FormBuilder,
+    private trainingService: TrainingService,
+    private router: Router
+  ) {}
 
   public submitted: boolean = false;
 
   ngOnInit(): void {
     this.trainingFormGeneralInfo = this._formBuilder.group({
-      name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      name: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20),
+        ],
+      ],
       sportsControl: null,
       description: null,
       hasWarpUp: [true],
       hasStretching: [false],
-      trainingDays: [null]
+      trainingDays: [null],
     });
   }
 
@@ -72,16 +90,16 @@ export class CreateTrainingFormGeneralInfoComponent implements OnInit {
 
     console.log(JSON.stringify(this.trainingFormGeneralInfo.value, null, 2));
     this.trainingService.create(this.trainingFormGeneralInfo.value).subscribe({
-      next: (data) => {
+      next: data => {
         console.log('data', data);
         this.submitted = true;
       },
-      error: (error) => {
+      error: error => {
         console.log('error', error);
       },
       complete: () => {
         console.log('complete');
-      }
+      },
     });
   }
 

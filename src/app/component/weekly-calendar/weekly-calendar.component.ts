@@ -1,28 +1,29 @@
-import { DatePipe } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
-import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
-import * as moment from "moment";
+import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import * as moment from 'moment';
 import { Output, EventEmitter } from '@angular/core';
-import { NgxFlickingModule } from "@egjs/ngx-flicking";
+import { NgxFlickingModule } from '@egjs/ngx-flicking';
 
 @Component({
   standalone: true,
   selector: 'app-weekly-calendar',
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    DatePipe,
-    NgxFlickingModule
-  ],
+  imports: [MatButtonModule, MatIconModule, DatePipe, NgxFlickingModule],
   templateUrl: './weekly-calendar.component.html',
-  styleUrls: ['./weekly-calendar.component.scss']
+  styleUrls: ['./weekly-calendar.component.scss'],
 })
 export class WeeklyCalendarComponent implements OnInit {
   @Output()
   public selectedDateChange = new EventEmitter<Date>();
 
-  public weekDays: { day: string, date: moment.Moment, isCurrentMonth: boolean, isActive: boolean, isCurrentDate: boolean }[] = [];
+  public weekDays: {
+    day: string;
+    date: moment.Moment;
+    isCurrentMonth: boolean;
+    isActive: boolean;
+    isCurrentDate: boolean;
+  }[] = [];
   public currentDate!: moment.Moment;
   public currentMonth!: string;
   public selectedDate: moment.Moment = moment().startOf('day');
@@ -49,10 +50,17 @@ export class WeeklyCalendarComponent implements OnInit {
       });
     }
 
-    this.currentMonth = this.capitalizeFirstLetter(this.currentDate.format('MMMM'));
+    this.currentMonth = this.capitalizeFirstLetter(
+      this.currentDate.format('MMMM')
+    );
   }
 
-  public selectDate(day: { day: string, date: moment.Moment, isCurrentMonth: boolean, isActive: boolean }) {
+  public selectDate(day: {
+    day: string;
+    date: moment.Moment;
+    isCurrentMonth: boolean;
+    isActive: boolean;
+  }) {
     // check if provided date is selectedDate
     if (day.isActive) {
       return;

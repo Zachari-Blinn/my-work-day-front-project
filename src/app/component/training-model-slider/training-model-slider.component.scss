@@ -1,12 +1,12 @@
 .flicking-panel {
-  background: #E0D6D1;
+  background: #e0d6d1;
   justify-content: center;
   margin-right: 5px;
   height: 58px;
   width: 105px;
   max-width: 105px;
   border-radius: 15px;
-  
+
   img {
     width: 22px;
     height: auto;
@@ -23,10 +23,9 @@
     background: none;
     outline: 2px dashed #b8b8b8;
     outline-offset: -2px;
-    background-color: #F4F3F1;
+    background-color: #f4f3f1;
     mat-icon {
       color: #b8b8b8;
     }
-  
   }
 }

@@ -1,5 +1,4 @@
 <div class="login-content">
-
   <h2 class="title">Bienvenue!</h2>
   <p class="sub-title">Entrez votre nom d'utilisateur et mot de passe</p>
 
@@ -11,18 +10,27 @@
   }
 
   <form [formGroup]="loginForm" aria-labelledby="login-heading">
-
     <mat-form-field>
       <mat-label>Nom d'utilisateur</mat-label>
-      <input matInput name="username" formControlName="username">
+      <input matInput name="username" formControlName="username" />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Mot de passe</mat-label>
-      <input matInput name="password" [type]="passwordHide ? 'password' : 'text'" formControlName="password">
-      <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'"
+      <input
+        matInput
+        name="password"
+        [type]="passwordHide ? 'password' : 'text'"
+        formControlName="password" />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="passwordHide = !passwordHide"
+        [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="passwordHide">
-        <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-icon>{{
+          passwordHide ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
       </button>
     </mat-form-field>
 
@@ -30,13 +38,17 @@
       <div class="forgot-password">Je n'arrive pas à me connecter</div>
     </a>
 
-    <button class="login-button" mat-fab extended type="submit" [disabled]="loginForm.invalid || loginForm.pending || isLoading"
+    <button
+      class="login-button"
+      mat-fab
+      extended
+      type="submit"
+      [disabled]="loginForm.invalid || loginForm.pending || isLoading"
       (click)="onSubmit()">
       @if (isLoading) {
         <mat-icon>
           <mat-spinner color="accent" diameter="25"></mat-spinner>
         </mat-icon>
-        
       } @else {
         <mat-icon>play_arrow</mat-icon>
       }
@@ -49,6 +61,5 @@
         <span class="create-account">Créer un compte</span>
       </a>
     </div>
-
   </form>
 </div>

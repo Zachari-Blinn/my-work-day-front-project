@@ -10,9 +10,9 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [
-    { 
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, 
-      useValue: { appearance: 'outline' } 
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
     },
   ],
 })
@@ -24,13 +24,13 @@ export class AppComponent implements OnInit {
   public username?: string;
 
   public eventBusSub?: Subscription;
-  
+
   public constructor(
     private storageService: StorageService,
     private authService: AuthService,
     private eventBusService: EventBusService
   ) {}
-  
+
   public ngOnInit(): void {
     this.isLoggedIn = this.storageService.isLoggedIn();
 
@@ -42,24 +42,24 @@ export class AppComponent implements OnInit {
       // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
-      console.info("Is logged in", this.username);
+      console.info('Is logged in', this.username);
     }
 
     this.eventBusSub = this.eventBusService.on('logout', () => {
       this.logout();
     });
   }
-  
+
   public logout(): void {
     this.authService.logout().subscribe({
       next: res => {
         this.storageService.clean();
-        
+
         window.location.reload();
       },
       error: err => {
         console.log(err);
-      }
+      },
     });
   }
 }

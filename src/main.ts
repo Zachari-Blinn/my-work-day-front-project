@@ -6,5 +6,6 @@ import { AppModule } from './app/app.module';
 // Register the locale data for French
 registerLocaleData(localeFr);
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
   .catch(err => console.error(err));

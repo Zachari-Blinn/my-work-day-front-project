@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HTTP_INTERCEPTORS,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
@@ -17,21 +24,26 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     private eventBusService: EventBusService
   ) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     req = req.clone({
       withCredentials: true,
     });
-    
-    if(this.storageService.isLoggedIn()) {
+
+    if (this.storageService.isLoggedIn()) {
       const token = this.storageService.getUser().accessToken;
       if (token) {
-        req = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token) });
+        req = req.clone({
+          headers: req.headers.set('Authorization', 'Bearer ' + token),
+        });
       }
     }
-    
+
     console.log('Sending request with new header now ...', req);
     return next.handle(req).pipe(
-      catchError((error) => {
+      catchError(error => {
         if (
           error instanceof HttpErrorResponse &&
           !req.url.includes('auth/signin') &&
@@ -56,7 +68,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
             return next.handle(request);
           }),
-          catchError((error) => {
+          catchError(error => {
             this.isRefreshing = false;
 
             if (error.status == '403') {

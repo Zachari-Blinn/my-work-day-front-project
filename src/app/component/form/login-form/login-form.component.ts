@@ -1,13 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthService } from "../../../services/auth.service";
-import { StorageService } from "../../../services/storage.service";
-import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
-import { Router } from "@angular/router";
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
+import { StorageService } from '../../../services/storage.service';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   standalone: true,
@@ -19,7 +29,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
@@ -28,16 +38,16 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
         hideRequiredMarker: true,
-        appearance: 'outline'
-      }
-    }
+        appearance: 'outline',
+      },
+    },
   ],
-  exportAs: 'login-form'
+  exportAs: 'login-form',
 })
 export class LoginFormComponent implements OnInit {
-  public loginForm: FormGroup= this._formBuilder.group({
+  public loginForm: FormGroup = this._formBuilder.group({
     username: [null, Validators.required],
-    password: [null, Validators.required]
+    password: [null, Validators.required],
   });
   public isLoggedIn = false;
   public isLoginFailed = false;
@@ -46,7 +56,12 @@ export class LoginFormComponent implements OnInit {
   public passwordHide: boolean = true;
   public isLoading: boolean = false;
 
-  public constructor(private _formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService, private router: Router) { }
+  public constructor(
+    private _formBuilder: FormBuilder,
+    private authService: AuthService,
+    private storageService: StorageService,
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
@@ -54,7 +69,7 @@ export class LoginFormComponent implements OnInit {
       this.roles = this.storageService.getUser().roles;
     }
   }
-  
+
   public onSubmit(): void {
     if (this.loginForm.invalid) {
       return;
@@ -63,7 +78,7 @@ export class LoginFormComponent implements OnInit {
     this.isLoading = true;
     this.isLoginFailed = false;
     this.loginForm.disable();
-    
+
     const { username, password } = this.loginForm.value;
 
     this.authService.login(username, password).subscribe({
@@ -85,11 +100,11 @@ export class LoginFormComponent implements OnInit {
     });
     this.loginForm.enable();
   }
-  
-  public get f(): { [key: string]: AbstractControl } { 
+
+  public get f(): { [key: string]: AbstractControl } {
     return this.loginForm.controls;
   }
-  
+
   private reloadPage(): void {
     window.location.reload();
   }

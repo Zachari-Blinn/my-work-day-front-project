@@ -7,7 +7,8 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "format": "npx prettier --write ."
   },
   "private": true,
   "dependencies": {
@@ -27,8 +28,12 @@
     "@capacitor/core": "^5.5.1",
     "@capacitor/ios": "^5.5.1",
     "@egjs/ngx-flicking": "^4.11.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "moment": "^2.29.4",
+    "prettier-eslint": "^16.1.2",
     "rxjs": "~7.8.0",
+    "save-dev": "^0.0.1-security",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
@@ -53,6 +58,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.1.1",
     "typescript": "~5.2.2"
   },
   "volta": {

@@ -1,5 +1,5 @@
-import { Exercise } from "./exercise.model";
-import { Series } from "./series.model";
+import { Exercise } from './exercise.model';
+import { Series } from './series.model';
 
 export class SeriesExercise {
   public id?: any;

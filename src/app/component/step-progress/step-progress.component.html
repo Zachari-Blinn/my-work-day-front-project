@@ -1,12 +1,14 @@
-
-<div id="content" #content class="step-progress-content" (scroll)="onScroll($event)">
+<div
+  id="content"
+  #content
+  class="step-progress-content"
+  (scroll)="onScroll($event)">
   <ul class="StepProgress">
     <li
       class="StepProgress-item is-done"
       *ngFor="let step of steps; let isLast = last"
       [class.is-done]="step.isDone"
-      [class.current]="step.isCurrent"
-    >
+      [class.current]="step.isCurrent">
       <div>{{ step.name }}</div>
     </li>
   </ul>

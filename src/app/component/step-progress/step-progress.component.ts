@@ -1,5 +1,13 @@
-import { NgFor } from "@angular/common";
-import { AfterViewInit, Component, ElementRef, HostListener, Input, Renderer2, ViewChild } from "@angular/core";
+import { NgFor } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 
 export interface TrainingStep {
   name: string;
@@ -10,21 +18,17 @@ export interface TrainingStep {
 @Component({
   standalone: true,
   selector: 'app-step-progress',
-  imports: [
-    NgFor
-  ],
+  imports: [NgFor],
   templateUrl: './step-progress.component.html',
   styleUrls: ['./step-progress.component.scss'],
-  exportAs: 'step-progress'
+  exportAs: 'step-progress',
 })
 export class StepProgressComponent implements AfterViewInit {
-
   @Input()
   public steps: TrainingStep[] = [];
-  
+
   @ViewChild('content', { static: true }) content!: ElementRef;
 
-  
   // public steps: TrainingStep[] = [
   //   {
   //     name: 'Développé couché',
@@ -52,7 +56,7 @@ export class StepProgressComponent implements AfterViewInit {
   //     isDone: false,
   //   },
   // ];
-  
+
   constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit() {
@@ -63,12 +67,19 @@ export class StepProgressComponent implements AfterViewInit {
   private setClasses() {
     const element = this.content.nativeElement;
     const isScrollable = element.scrollHeight > element.clientHeight;
-    const isScrolledToBottom = element.scrollHeight <= element.clientHeight + element.scrollTop + 1;
+    const isScrolledToBottom =
+      element.scrollHeight <= element.clientHeight + element.scrollTop + 1;
     const isScrolledToTop = element.scrollTop === 0;
 
     if (isScrollable) {
-      this.renderer[isScrolledToBottom ? 'removeClass' : 'addClass'](element, 'is-bottom-overflowing');
-      this.renderer[isScrolledToTop ? 'removeClass' : 'addClass'](element, 'is-top-overflowing');
+      this.renderer[isScrolledToBottom ? 'removeClass' : 'addClass'](
+        element,
+        'is-bottom-overflowing'
+      );
+      this.renderer[isScrolledToTop ? 'removeClass' : 'addClass'](
+        element,
+        'is-top-overflowing'
+      );
     } else {
       this.renderer.removeClass(element, 'is-bottom-overflowing');
       this.renderer.removeClass(element, 'is-top-overflowing');

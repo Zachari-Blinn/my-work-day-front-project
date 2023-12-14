@@ -1,6 +1,4 @@
-<ngx-flicking
-  [options]="{ defaultIndex: 1, bound: true }"
->
+<ngx-flicking [options]="{ defaultIndex: 1, bound: true }">
   @for (item of trainings; track $index) {
     <div flicking-panel class="flicking-panel">
       <img src="assets/icon/cardio.png" alt="icon" />
@@ -9,10 +7,12 @@
       </span>
     </div>
   }
-  <div flicking-panel class="flicking-panel" [routerLink]="['/create-training']" routerLinkActive="router-link-active">
-    <mat-icon style="transform: scale(1.35);">add</mat-icon>
-    <span>
-      Ajouter
-    </span>
+  <div
+    flicking-panel
+    class="flicking-panel"
+    [routerLink]="['/create-training']"
+    routerLinkActive="router-link-active">
+    <mat-icon style="transform: scale(1.35)">add</mat-icon>
+    <span> Ajouter </span>
   </div>
 </ngx-flicking>

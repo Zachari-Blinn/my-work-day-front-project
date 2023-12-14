@@ -1,7 +1,7 @@
 <div>
-
   <!-- calendar -->
-  <app-weekly-calendar (selectedDateChange)="setSelectedDate($event)"></app-weekly-calendar>
+  <app-weekly-calendar
+    (selectedDateChange)="setSelectedDate($event)"></app-weekly-calendar>
 
   <!-- training session -->
   <div class="training-session-text-container">
@@ -9,19 +9,28 @@
     <div class="selected-day-text">{{ selectedFormattedDate }}</div>
   </div>
 
-  <mat-chip-listbox aria-label="selection" (change)="onSelectedTrainingChange($event)">
+  <mat-chip-listbox
+    aria-label="selection"
+    (change)="onSelectedTrainingChange($event)">
     @for (training of trainingsOfSelectedDay; track $index) {
-      <mat-chip-option [selected]="training.selected" [value]="training.id">{{ training.name }}</mat-chip-option>
+      <mat-chip-option [selected]="training.selected" [value]="training.id">{{
+        training.name
+      }}</mat-chip-option>
     }
   </mat-chip-listbox>
 
   <!-- training session program -->
   <app-step-progress [steps]="currentSelectedTrainingSteps">
-    <div no-content style="text-align: center;">
-      <img style="width: 180px;" src="/assets/images/morphis-fitness-cardio-for-healthy-heart.png" alt="no-content">
-      <div style="font-size: 16px; font-weight: 300; margin-top: 10px;">
-        <div style="font-weight: 400; text-decoration: underline;">Aucun programme</div>
-        <div> pour cette journée</div>
+    <div no-content style="text-align: center">
+      <img
+        style="width: 180px"
+        src="/assets/images/morphis-fitness-cardio-for-healthy-heart.png"
+        alt="no-content" />
+      <div style="font-size: 16px; font-weight: 300; margin-top: 10px">
+        <div style="font-weight: 400; text-decoration: underline">
+          Aucun programme
+        </div>
+        <div>pour cette journée</div>
       </div>
     </div>
   </app-step-progress>
@@ -30,7 +39,11 @@
   <div class="button-container">
     @if (currentSelectedTrainingSteps.length > 0) {
       <div class="buttons">
-        <button class="button-validate" mat-fab extended (click)="openValidateTrainingDialog()">
+        <button
+          class="button-validate"
+          mat-fab
+          extended
+          (click)="openValidateTrainingDialog()">
           <mat-icon>done</mat-icon>
           Valider
         </button>
@@ -39,22 +52,31 @@
           Commencer la séance
         </button>
       </div>
-    } @else if (currentSelectedTrainingSteps.length <= 0 && trainingHasSelected === true) {
+    } @else if (
+      currentSelectedTrainingSteps.length <= 0 && trainingHasSelected === true
+    ) {
       <div class="buttons">
-        <button class="button-validate" mat-fab extended (click)="openAddExerciseFormPage()">
+        <button
+          class="button-validate"
+          mat-fab
+          extended
+          (click)="openAddExerciseFormPage()">
           <mat-icon>add</mat-icon>
           Ajouter un exercice
         </button>
       </div>
     } @else {
       <div class="buttons">
-        <button class="button-validate" mat-fab extended (click)="openAddActivityDialog()">
+        <button
+          class="button-validate"
+          mat-fab
+          extended
+          (click)="openAddActivityDialog()">
           <mat-icon>add</mat-icon>
           Ajouter une activité
         </button>
       </div>
     }
-
   </div>
 
   <div class="my-activities-container">
@@ -65,6 +87,4 @@
   <div class="training-model-slider-container">
     <app-training-model-slider></app-training-model-slider>
   </div>
-
-
 </div>

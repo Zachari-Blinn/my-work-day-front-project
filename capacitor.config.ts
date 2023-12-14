@@ -6,14 +6,14 @@ const config: CapacitorConfig = {
   webDir: 'dist/my-work-day-back',
   server: {
     androidScheme: 'http',
-    cleartext: true
+    cleartext: true,
   },
   plugins: {
     CapacitorHttp: {
-      enabled: true
-    }
+      enabled: true,
+    },
   },
-  loggingBehavior: 'debug'
+  loggingBehavior: 'debug',
 };
 
 export default config;

@@ -18,23 +18,24 @@ export interface DialogData {
   templateUrl: './add-activity-dialog.component.html',
   styleUrls: ['./add-activity-dialog.component.scss'],
   standalone: true,
-  imports: [
-    MatDialogModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule
-  ],
+  imports: [MatDialogModule, MatButtonModule, MatIconModule, RouterModule],
 })
 export class AddActivityDialogComponent {
-  selectedFormattedDate: string = "";
+  selectedFormattedDate: string = '';
 
-  constructor(private dialogRef: MatDialogRef<AddActivityDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private dateHelper: DateHelper, private router: Router) {
-    this.selectedFormattedDate = this.dateHelper.formattedSelectedDate(data.selectedDate);
+  constructor(
+    private dialogRef: MatDialogRef<AddActivityDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private dateHelper: DateHelper,
+    private router: Router
+  ) {
+    this.selectedFormattedDate = this.dateHelper.formattedSelectedDate(
+      data.selectedDate
+    );
   }
 
   public goToNewTraining(): void {
     this.dialogRef.close();
     this.router.navigate(['/create-training']);
   }
-
 }

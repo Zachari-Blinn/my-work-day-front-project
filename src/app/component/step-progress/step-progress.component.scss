@@ -44,7 +44,7 @@ ul {
   left: 15px;
   width: 10px;
   height: 100%;
-  border-left: 2px solid #CCC;
+  border-left: 2px solid #ccc;
 }
 
 .StepProgress-item {
@@ -73,9 +73,9 @@ ul {
   left: -37px;
   width: 14px;
   height: 14px;
-  border: 2px solid #CCC;
+  border: 2px solid #ccc;
   border-radius: 50%;
-  background-color: #FFF;
+  background-color: #fff;
 }
 
 .StepProgress-item.is-done::before {
@@ -84,7 +84,7 @@ ul {
 
 .StepProgress-item.is-done::after {
   font-size: 10px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   border: 2px solid $step-color;
   background-color: $step-color;

@@ -1,4 +1,4 @@
-import { SeriesExercise } from "./series-exercise.model";
+import { SeriesExercise } from './series-exercise.model';
 
 export class Training {
   public id?: any;

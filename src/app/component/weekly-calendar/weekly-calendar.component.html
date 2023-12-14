@@ -1,7 +1,9 @@
 <div class="weekly-calendar">
   <div class="header">
-    <div class="monthYear">{{ currentMonth }} {{ currentDate.format('YYYY') }}</div>
-    <div style="display: flex; gap: 10px;">
+    <div class="monthYear">
+      {{ currentMonth }} {{ currentDate.format('YYYY') }}
+    </div>
+    <div style="display: flex; gap: 10px">
       <button (click)="previousWeek()">
         <mat-icon>chevron_left</mat-icon>
       </button>
@@ -12,15 +14,19 @@
   </div>
   <div class="days">
     @for (day of weekDays; track $index) {
-    <div class="day">{{ day.day }}</div>
+      <div class="day">{{ day.day }}</div>
     }
   </div>
-    <div class="dates">
-      @for (day of weekDays; track $index) {
-      <div class="date" [class.inactive]="!day.isCurrentMonth" [class.active]="day.isActive"
-        [class.currentDate]="day.isCurrentDate" (click)="selectDate(day)">
+  <div class="dates">
+    @for (day of weekDays; track $index) {
+      <div
+        class="date"
+        [class.inactive]="!day.isCurrentMonth"
+        [class.active]="day.isActive"
+        [class.currentDate]="day.isCurrentDate"
+        (click)="selectDate(day)">
         {{ day.date.format('D') }}
       </div>
-      }
-    </div>
+    }
+  </div>
 </div>

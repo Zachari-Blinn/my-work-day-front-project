@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 const AUTH_API = 'http://192.168.0.15:8081/api/auth/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
@@ -25,7 +25,11 @@ export class AuthService {
     );
   }
 
-  public register(username: string, email: string, password: string): Observable<any> {
+  public register(
+    username: string,
+    email: string,
+    password: string
+  ): Observable<any> {
     return this.http.post(
       AUTH_API + 'signup',
       {
@@ -38,10 +42,10 @@ export class AuthService {
   }
 
   public logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+    return this.http.post(AUTH_API + 'signout', {}, httpOptions);
   }
 
   public refreshToken() {
-    return this.http.post(AUTH_API + 'refreshtoken', { }, httpOptions);
+    return this.http.post(AUTH_API + 'refreshtoken', {}, httpOptions);
   }
 }

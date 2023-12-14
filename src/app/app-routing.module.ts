@@ -9,20 +9,46 @@ import { ModifyBeforeValidateTrainingPageComponent } from './pages/form/modify-b
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomePageComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
-  { path: 'create-training', component: CreateTrainingFormPageComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
-  { path: 'login', component: LoginPageComponent, data: { requiresLogin: false } },
-  { path: 'training/:trainingId/add-exercise', component: AddExerciseFormPageComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
-  { path: 'training/:trainingId/modify-before-validate', component: ModifyBeforeValidateTrainingPageComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
+  {
+    path: 'home',
+    component: HomePageComponent,
+    data: { requiresLogin: true },
+    canActivate: [AccessGuard],
+  },
+  {
+    path: 'create-training',
+    component: CreateTrainingFormPageComponent,
+    data: { requiresLogin: true },
+    canActivate: [AccessGuard],
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
+    data: { requiresLogin: false },
+  },
+  {
+    path: 'training/:trainingId/add-exercise',
+    component: AddExerciseFormPageComponent,
+    data: { requiresLogin: true },
+    canActivate: [AccessGuard],
+  },
+  {
+    path: 'training/:trainingId/modify-before-validate',
+    component: ModifyBeforeValidateTrainingPageComponent,
+    data: { requiresLogin: true },
+    canActivate: [AccessGuard],
+  },
   // { path: 'register', component: RegisterPageComponent },
   // { path: 'series-exercise-form', component: SeriesExerciseFormComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    bindToComponentInputs: true
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      bindToComponentInputs: true,
+    }),
+  ],
   providers: [AccessGuard],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
