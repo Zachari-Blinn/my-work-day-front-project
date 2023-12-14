@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { TrainingService } from '../../services/training.service';
 import { Training } from '../../models/training.model';
@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './training-model-slider.component.html',
   styleUrl: './training-model-slider.component.scss',
   imports: [MatIconModule, NgxFlickingModule, RouterModule],
-  exportAs: 'training-model-slider',
 })
 export class TrainingModelSliderComponent implements OnInit {
   public trainings?: Training[];

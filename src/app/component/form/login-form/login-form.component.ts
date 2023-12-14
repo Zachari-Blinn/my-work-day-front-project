@@ -42,7 +42,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       },
     },
   ],
-  exportAs: 'login-form',
 })
 export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup = this._formBuilder.group({

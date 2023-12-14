@@ -1,6 +1,6 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -31,7 +31,6 @@ export interface StepperContent {
       useValue: { displayDefaultIndicatorType: false },
     },
   ],
-  exportAs: 'session-step',
 })
 export class SessionStepComponent {
   @ViewChild('stepper')

@@ -8,10 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import {
-  MatSlideToggleModule,
-  _MatSlideToggleRequiredValidatorModule,
-} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Training } from '../../../../models/training.model';
 import { TrainingService } from '../../../../services/training.service';
 import { MatInputModule } from '@angular/material/input';
@@ -58,7 +55,6 @@ interface TempoList {
   ],
   templateUrl: './add-exercise-form.component.html',
   styleUrls: ['./add-exercise-form.component.scss'],
-  exportAs: 'add-exercise',
 })
 export class AddExerciseFormComponent implements OnInit {
   @Input({ required: true })

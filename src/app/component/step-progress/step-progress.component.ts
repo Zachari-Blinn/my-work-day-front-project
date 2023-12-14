@@ -21,7 +21,6 @@ export interface TrainingStep {
   imports: [NgFor],
   templateUrl: './step-progress.component.html',
   styleUrls: ['./step-progress.component.scss'],
-  exportAs: 'step-progress',
 })
 export class StepProgressComponent implements AfterViewInit {
   @Input()

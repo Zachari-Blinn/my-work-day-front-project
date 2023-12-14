@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './footer-section.component.html',
   styleUrls: ['./footer-section.component.scss'],
-  exportAs: 'footer-section',
 })
 export class FooterSectionComponent {}

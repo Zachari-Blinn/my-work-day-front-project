@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  MAT_FORM_FIELD_DEFAULT_OPTIONS,
-  MatFormFieldModule,
-} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {
@@ -52,7 +49,6 @@ interface SportsGroup {
   ],
   templateUrl: './create-training-form-general-info.component.html',
   styleUrls: ['./create-training-form-general-info.component.scss'],
-  exportAs: 'create-training-form-general-info',
 })
 export class CreateTrainingFormGeneralInfoComponent implements OnInit {
   public trainingFormGeneralInfo!: FormGroup;

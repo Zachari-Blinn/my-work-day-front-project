@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {
@@ -50,7 +50,7 @@ import { ValidateActivityDialogComponent } from 'src/app/component/dialog/valida
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
   public selectedFormattedDate: string = '';
   public selectedDate: Date = new Date();
   public trainingsOfSelectedDay: any[] = [];

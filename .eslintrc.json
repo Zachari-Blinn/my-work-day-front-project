@@ -1,6 +1,10 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
   "overrides": [
     {
       "files": ["*.ts"],
@@ -30,7 +34,9 @@
         ],
         "@typescript-eslint/no-explicit-any": "warn",
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "warn"
+        "@typescript-eslint/no-unused-vars": "warn",
+        "no-console": "warn",
+        "complexity": ["warn", 10]
       }
     },
     {
