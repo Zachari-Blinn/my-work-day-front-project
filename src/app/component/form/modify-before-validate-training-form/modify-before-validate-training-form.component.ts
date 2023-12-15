@@ -27,12 +27,12 @@ import { TrainingService } from 'src/app/services/training.service';
   styleUrls: ['./modify-before-validate-training-form.component.scss'],
 })
 export class ModifyBeforeValidateTrainingFormComponent implements OnInit {
+  @Input({ required: true })
+  public trainingId!: Training['id'];
+
   public selectedDate!: Date;
   public trainingSession: TrainingExercise[] = [];
   public trainingSessionForm!: FormGroup;
-
-  @Input({ required: true })
-  public trainingId!: Training['id'];
 
   constructor(
     private router: Router,
@@ -87,14 +87,14 @@ export class ModifyBeforeValidateTrainingFormComponent implements OnInit {
       this._formBuilder.group({
         notes: [trainingExercise.notes],
         numberOfWarmUpSeries: [trainingExercise.numberOfWarmUpSeries],
-        parent: [trainingExercise.id],
+        parent: [trainingExercise],
         trainingDay: [trainingExercise.trainingDay],
         training: [trainingExercise.training],
         exercise: [trainingExercise.exercise],
         seriesList: this._formBuilder.array(
           trainingExercise.seriesList.map(series => {
             return this._formBuilder.group({
-              parent: [series.id],
+              parent: [series],
               positionIndex: [series.positionIndex],
               repsCount: [series.repsCount],
               weight: [series.weight],
@@ -120,18 +120,34 @@ export class ModifyBeforeValidateTrainingFormComponent implements OnInit {
 
   public getSeriesListControls(index: number): AbstractControl[] {
     return (
-      (this.trainingSessionForm.get('trainingSession') as FormArray).controls[
-        index
-      ].get('seriesList') as FormArray
-    ).controls;
+      (
+        (this.trainingSessionForm.get('trainingSession') as FormArray).controls[
+          index
+        ].get('seriesList') as FormArray
+      )?.controls || []
+    );
   }
 
   public onSubmit(): void {
-    if (!this.trainingSessionForm.valid) {
+    if (!this.trainingSessionForm?.valid) {
       return;
     }
+    this.persistTrainingSession();
+  }
 
-    // print value of form
-    console.log(this.trainingSessionForm.value);
+  private persistTrainingSession(): void {
+    this.trainingService
+      .modifyBeforeValidateTraining(
+        this.trainingId,
+        this.trainingSessionForm.value
+      )
+      .subscribe({
+        next: () => {
+          this.router.navigateByUrl('/home');
+        },
+        error: error => {
+          console.error(error);
+        },
+      });
   }
 }

@@ -4,17 +4,39 @@
       <div [formGroupName]="$index">
         <h2>{{ trainingSession.get('exercise')?.value?.name }}</h2>
 
-        <label for="notes">Notes:</label>
-        <input type="text" formControlName="notes" />
+        <!-- <label for="notes">Notes:</label>
+        <input type="text" formControlName="notes" /> -->
 
         <div formArrayName="seriesList">
           @for (series of getSeriesListControls($index); track $index) {
-            <div [formGroupName]="$index">
-              <label for="repsCount">Reps:</label>
-              <input type="number" formControlName="repsCount" />
+            <div
+              [formGroupName]="$index"
+              style="display: flex; gap: 6px"
+              class="series-box">
+              <mat-form-field floatLabel="always">
+                <mat-label>Réps</mat-label>
+                <input
+                  type="number"
+                  matInput
+                  formControlName="repsCount"
+                  placeholder="12" />
+              </mat-form-field>
 
-              <label for="weight">Weight:</label>
-              <input type="number" formControlName="weight" />
+              <!-- tempo -->
+
+              <mat-form-field floatLabel="always">
+                <mat-label>Repos</mat-label>
+                <input type="time" matInput formControlName="restTime" />
+              </mat-form-field>
+
+              <mat-form-field floatLabel="always">
+                <mat-label>Charge</mat-label>
+                <input
+                  type="number"
+                  matInput
+                  formControlName="weight"
+                  placeholder="12" />
+              </mat-form-field>
             </div>
           }
         </div>

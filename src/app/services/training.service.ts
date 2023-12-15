@@ -58,4 +58,15 @@ export class TrainingService {
       httpOptions
     );
   }
+
+  public modifyBeforeValidateTraining(
+    trainingId: Training['id'],
+    data: TrainingExercise[]
+  ): Observable<any> {
+    return this.http.post(
+      BASE_URL + '/' + trainingId + '/modify-before-validate',
+      data,
+      httpOptions
+    );
+  }
 }

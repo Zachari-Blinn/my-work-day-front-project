@@ -6,7 +6,7 @@ export interface TrainingExercise {
   id: number;
   notes?: string;
   numberOfWarmUpSeries?: number;
-  parent?: number;
+  parent?: TrainingExercise;
   trainingDay?: string;
   training: Training;
   exercise: Exercise;

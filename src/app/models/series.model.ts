@@ -7,7 +7,7 @@ export class Series {
   public lastUpdatedBy?: number;
   public lastUpdatedOn?: Date;
   public notes?: string;
-  public parent?: number;
+  public parent?: Series;
   public positionIndex?: number;
   public repsCount?: number;
   public restTime?: string;
