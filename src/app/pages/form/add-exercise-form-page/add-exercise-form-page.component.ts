@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AddExerciseFormComponent } from '../../../component/form/create-training-form-steps/add-exercise-form/add-exercise-form.component';
+import { AddExerciseFormComponent } from '../../../component/form/add-exercise-form/add-exercise-form.component';
 import { Training } from '../../../models/training.model';
 
 @Component({
