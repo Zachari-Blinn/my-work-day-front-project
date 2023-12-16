@@ -1,5 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { DateHelper } from 'src/app/helper/date.helper';
@@ -24,6 +28,7 @@ export class ValidateActivityDialogComponent {
   public selectedDate: Date = new Date();
 
   constructor(
+    public dialogRef: MatDialogRef<ValidateActivityDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private dateHelper: DateHelper,
     private trainingService: TrainingService,
@@ -45,7 +50,7 @@ export class ValidateActivityDialogComponent {
         trainingDay: this.selectedDate,
       })
       .subscribe(() => {
-        window.location.reload();
+        this.dialogRef.close();
       });
   }
 
@@ -53,9 +58,14 @@ export class ValidateActivityDialogComponent {
     if (!this.selectedTrainingId) {
       return;
     }
+    this.dialogRef.close();
     this.router.navigateByUrl(
       `/training/${this.selectedTrainingId}/modify-before-validate`,
       { state: { selectedDate: this.selectedDate } }
     );
+  }
+
+  public closeDialog(): void {
+    this.dialogRef.close();
   }
 }

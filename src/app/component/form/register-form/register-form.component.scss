@@ -1,0 +1,50 @@
+$primary-color: #ff1d1d;
+
+.error-message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: red;
+}
+
+.register-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.sub-title {
+  font-size: 14px;
+  font-weight: lighter;
+  margin-bottom: 47px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-label {
+  color: $primary-color;
+}
+
+mat-chip-listbox {
+  margin-bottom: 20px;
+}
+
+.mat-mdc-standard-chip.mdc-evolution-chip--disabled {
+  opacity: 1;
+}
+
+.register-button {
+  background-color: $primary-color;
+  color: white;
+  box-shadow: none;
+  border-radius: 15px;
+  width: 100%;
+}

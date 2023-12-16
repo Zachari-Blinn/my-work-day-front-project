@@ -35,7 +35,11 @@ export class AddActivityDialogComponent {
   }
 
   public goToNewTraining(): void {
-    this.dialogRef.close();
+    this.closeDialog();
     this.router.navigate(['/create-training']);
+  }
+
+  public closeDialog(): void {
+    this.dialogRef.close();
   }
 }

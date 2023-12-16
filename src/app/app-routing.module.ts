@@ -6,6 +6,7 @@ import { LoginPageComponent } from './pages/login/login-page.component';
 import { AccessGuard } from './guards/access.guard';
 import { AddExerciseFormPageComponent } from './pages/form/add-exercise-form-page/add-exercise-form-page.component';
 import { ModifyBeforeValidateTrainingPageComponent } from './pages/form/modify-before-validate-training-page/modify-before-validate-training-page.component';
+import { RegisterPageComponent } from './pages/register/register-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -38,7 +39,11 @@ const routes: Routes = [
     data: { requiresLogin: true },
     canActivate: [AccessGuard],
   },
-  // { path: 'register', component: RegisterPageComponent },
+  {
+    path: 'register',
+    component: RegisterPageComponent,
+    data: { requiresLogin: false },
+  },
   // { path: 'series-exercise-form', component: SeriesExerciseFormComponent }
 ];
 
