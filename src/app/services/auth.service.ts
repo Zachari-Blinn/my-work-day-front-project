@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'environment';
 
-const AUTH_API = 'http://192.168.0.15:8081/api/auth/';
+const BASE_URL = `${environment.BASE_URL}/auth`;
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -16,7 +17,7 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<any> {
     return this.http.post(
-      AUTH_API + 'signin',
+      BASE_URL + '/signin',
       {
         username,
         password,
@@ -31,7 +32,7 @@ export class AuthService {
     password: string
   ): Observable<any> {
     return this.http.post(
-      AUTH_API + 'signup',
+      BASE_URL + '/signup',
       {
         username,
         email,
@@ -42,10 +43,10 @@ export class AuthService {
   }
 
   public logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', {}, httpOptions);
+    return this.http.post(BASE_URL + '/signout', {}, httpOptions);
   }
 
   public refreshToken() {
-    return this.http.post(AUTH_API + 'refreshtoken', {}, httpOptions);
+    return this.http.post(BASE_URL + '/refreshtoken', {}, httpOptions);
   }
 }
